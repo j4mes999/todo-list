@@ -1,12 +1,11 @@
-import { getUnixTime, getTime, format } from "date-fns";
-const DATE_FORMAT = 'dd/MM/yyyy';
+import { getUnixTime, getTime, format, parse } from "date-fns";
+const DATE_FORMAT = 'd/M/yyyy';
 
 //Pre: date is in format "dd-MM-yyyy"
-function processDate(date){
-  const dateSplit = date.split('/');
-  console.log({dateSplit});
-  const formattedDate = format(new Date(dateSplit[2], dateSplit[0], dateSplit[1]), DATE_FORMAT);
-  return getUnixTime(formattedDate);
+function processDate(stringDate){
+  const date = parse(stringDate,DATE_FORMAT, new Date());
+  const formattedDate = format(date, DATE_FORMAT);
+  return getTime(formattedDate);
 }
 
 export default processDate;
