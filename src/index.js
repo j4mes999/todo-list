@@ -1,7 +1,13 @@
 import createTask from "./backend/task";
-import { fromUnixTime } from "date-fns";
+import createProject from "./backend/project";
 
-console.log("hello with webpack dev server");
-const task1 = createTask("Do the dishes", "Wash pots, dishes and cutterly","10/20/2024","1");
-console.log("task desc: " + task1.description);
-console.log('index.js Date: '+fromUnixTime(task1.dueDate));
+const task1 = createTask("Do the dishes", "Wash pots, dishes and cutterly",'09/30/2024',"1");
+const task2 = createTask("Vaccum", "Sofa and bed",'01/30/2024',"2");
+let tasks = [];
+tasks.push(task1);
+tasks.push(task2);
+console.log('index.js tasks '+tasks.length);
+const project = createProject(tasks);
+console.log('index.js project: '+project.tasks.length);
+project.tasks.push(task1);
+console.log('index.js project: '+project.tasks.length);
