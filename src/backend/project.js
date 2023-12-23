@@ -1,11 +1,19 @@
-function createProject(tasks){
+function project(tasks){
     tasks
 
-    function addTask(task){
-        this.tasks.push(task);
+    const addTask = (task) => {
+        tasks.push(task);
     }
 
-    return {tasks};
+    const getNumberOfTasks = () => {
+        return tasks.length;
+    }
+
+    const removeTask = (taskId) => {
+        //TODO pending to implement
+    }
+
+    return {addTask, getNumberOfTasks};
 }
 
-export default createProject;
+export default project;
