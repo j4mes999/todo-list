@@ -1,4 +1,4 @@
-import { getUnixTime, format, parse, compareAsc } from "date-fns";
+import { getUnixTime, format, parse, compareAsc, fromUnixTime } from "date-fns";
 const DATE_FORMAT = 'M/d/yyyy';
 
 //Pre: date is in format "M-d-yyyy"
@@ -20,4 +20,9 @@ function isBeforeFromNow(date){
   return false;
 }
 
-export {processDate, isBeforeFromNow};
+function getDateStringFromTimeStamp(timeStamp){
+  const date =  fromUnixTime(timeStamp);
+  return format(date,DATE_FORMAT);
+}
+
+export {processDate, isBeforeFromNow, getDateStringFromTimeStamp, DATE_FORMAT};

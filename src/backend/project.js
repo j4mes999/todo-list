@@ -1,10 +1,10 @@
 import createId from "./utils/id";
 
-function createProject(name,description){
+function createProject(name,description,projectId){
     name,
     description
 
-    const id = createId();
+    const id = projectId != null ? projectId : createId();
     let tasks = [];
 
     const addTask = (task) => {

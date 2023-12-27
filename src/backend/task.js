@@ -1,7 +1,7 @@
 import {processDate,isBeforeFromNow} from "./utils/date";
 import createId from "./utils/id";
 
-function createTask( title, description, dueDate, priority){
+function createTask( title, description, dueDate, priority, taskId, project){
     title,
     description,
     dueDate =  validateDate(dueDate),
@@ -11,7 +11,7 @@ function createTask( title, description, dueDate, priority){
         return createId();
     }
 
-    const id = generateId();
+    const id = taskId != null ? taskId : generateId();
 
     function validateDate(date){
         if(date.length == 0){
@@ -25,7 +25,10 @@ function createTask( title, description, dueDate, priority){
         
     }
 
-    return {title, description, dueDate, priority,id};
+    const projectId = project;
+
+
+    return {title, description, dueDate, priority, id, projectId};
 }
 
 export default createTask;
