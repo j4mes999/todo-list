@@ -9,13 +9,15 @@ function processDate(stringDate){
 }
 
 function isBeforeFromNow(date){
-  //TODO call this one when creating a task
-  const compareResult = compareAsc(new Date(), date);
-  if (compareResult == 1){
+  const now = new Date();
+  const formattedNow = format(now, DATE_FORMAT);
+  const parsedNow = parse(formattedNow, DATE_FORMAT, new Date());
+  const compareResult = compareAsc(date, parsedNow);
+  if (compareResult < 0){
     return true;
   }
 
   return false;
 }
 
-export default processDate;
+export {processDate, isBeforeFromNow};

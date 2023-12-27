@@ -1,7 +1,10 @@
-function project(name,description){
+import createId from "./utils/id";
+
+function createProject(name,description){
     name,
     description
 
+    const id = createId();
     let tasks = [];
 
     const addTask = (task) => {
@@ -25,7 +28,13 @@ function project(name,description){
         }
     }
 
-    return {addTask, getNumberOfTasks, removeTask, name, description};
+    const getTasks = () => {
+        return tasks;
+    }
+
+    
+
+    return {addTask, getNumberOfTasks, removeTask, getTasks, name, description, id};
 }
 
-export default project;
+export default createProject;

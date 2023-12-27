@@ -1,16 +1,29 @@
-import processDate from "./utils/date";
+import {processDate,isBeforeFromNow} from "./utils/date";
+import createId from "./utils/id";
 
 function createTask( title, description, dueDate, priority){
     title,
     description,
-    dueDate =  processDate(dueDate),
+    dueDate =  validateDate(dueDate),
     priority
 
     const generateId = () => {
-        return Date.now().toString(36) + Math.random().toString(36).substring(2);
+        return createId();
     }
 
     const id = generateId();
+
+    function validateDate(date){
+        if(date.length == 0){
+            return '';
+        }else if(isBeforeFromNow(date)){
+            console.warn('Due date cannot be before today\'s  date');
+            return ''
+        }
+
+        return processDate(date);
+        
+    }
 
     return {title, description, dueDate, priority,id};
 }
