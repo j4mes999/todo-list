@@ -17,7 +17,6 @@ function clearStorage(){
 }
 
 function retrieveDataFromStorage(){
-    const application = [];
     const projects = [];
     const tasks = [];
 
@@ -25,18 +24,19 @@ function retrieveDataFromStorage(){
         console.log('Local Storage is empty no data for retreiving');
         return null;
     }
+
+    console.log('Retreiving data from local storage ...');
+
     loadProjectsAndTasks(projects,tasks);
     linkProjectsAndTasks(projects,tasks);
 
-    projects.forEach((p) => {
-        console.log(`storageManager.js project id: ${p.id}`);
-        p.getTasks().forEach(t => {
-            console.log(' storageManager.js task id: '+t.id);
-        });
+    console.log('Done!');
 
-    })
+    return projects;
+}
 
-    return application;
+function removeTask(taskID){
+    localStorage.removeItem('t'+taskID);
 }
 
 function loadProjectsAndTasks(projects, tasks){
@@ -83,4 +83,4 @@ function getElementFromStorage(key){
     return JSON.parse(localStorage.getItem(key));
 }
 
-export {saveProject, saveTask, clearStorage, retrieveDataFromStorage};
+export {saveProject, saveTask, clearStorage, retrieveDataFromStorage, removeTask};

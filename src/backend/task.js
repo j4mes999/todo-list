@@ -4,7 +4,7 @@ import createId from "./utils/id";
 function createTask( title, description, dueDate, priority, taskId, project){
     title,
     description,
-    dueDate =  validateDate(dueDate),
+    dueDate =  project == null ? validateDate(dueDate) : dueDate,
     priority
 
     const generateId = () => {
