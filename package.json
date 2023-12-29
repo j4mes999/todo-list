@@ -11,7 +11,9 @@
   "author": "Luis J. Gonzalez",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^3.3.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.10.0"

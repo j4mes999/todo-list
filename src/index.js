@@ -1,6 +1,7 @@
 import createTask from "./backend/task";
 import createProject from "./backend/project";
 import { saveProject, saveTask, retrieveDataFromStorage, removeTask } from "./backend/persistence/storageManager";
+import loadWebsite from "./frontend/website";
 
 window.createTask = createTask;
 window.createProject = createProject;
@@ -79,3 +80,5 @@ saveTask(task4,project2.id);
 const data = retrieveDataFromStorage();
 
 window.data = data;
+
+loadWebsite();

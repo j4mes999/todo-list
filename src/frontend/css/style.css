@@ -1,0 +1,23 @@
+:root{
+    --background-body: rgba(16, 119, 183, 0.6);
+    --border-color:  #10b143;
+    --main-font-color: rgb(20, 21, 21);
+  }
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--background-body);
+    border-bottom: 1px solid var(--border-color);
+    font-family: sans-serif;
+    font-style: italic;
+  }
+
+  .title{
+    font-size: 40px;
+    color: var(--main-font-color);
+  }
