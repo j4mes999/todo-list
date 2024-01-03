@@ -11,6 +11,7 @@ function createFooter(){
 
     const gitHubLink = document.createElement('a');
     gitHubLink.href = MY_GIT_HUB_LINK;
+    gitHubLink.target = '_blank';
     const githubImg = new Image();
     githubImg.classList.add('githubIcon');
     githubImg.src = githubIcon;
