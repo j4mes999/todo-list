@@ -98,3 +98,9 @@
     margin: 5px;
   }
 
+  .createProjectButton{
+    background: transparent;
+    cursor: pointer;
+    border: solid 2px transparent;
+  }
+

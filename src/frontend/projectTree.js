@@ -5,8 +5,9 @@ function createProjectTree(){
     projectTitle.classList.add('subTitle','subTitleProject');
     projectTitle.innerHTML = 'Projects';
 
-    const createProjectLink = document.createElement('a');
-    createProjectLink.href = 'todo';
+    const createProjectLink = document.createElement('button');
+    createProjectLink.type = 'button';
+    createProjectLink.classList.add('createProjectButton');
     const icon = new Image();
     icon.classList.add('createProjectIcon');
     icon.src = createProjectIcon;
@@ -17,8 +18,18 @@ function createProjectTree(){
     projectPane.appendChild(projectTitle);
     projectPane.appendChild(createProjectLink);
 
+    createProjectLink.addEventListener('click', () => {
+        projectPane.insertBefore(createProjectForm(),createProjectLink);
+    })
+
     return projectPane;
 
+}
+
+function createProjectForm(){
+    const createProjectContainer = document.createElement('createProjectForm');
+    
+    return createProjectContainer;
 }
 
 export default createProjectTree;
