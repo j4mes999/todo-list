@@ -1,4 +1,5 @@
 import createProjectIcon from './media/plusSignYellow.png';
+import folderIconImg from './media/folderIconWhite.png';
 
 function createProjectTree(){
     const projectTitle = document.createElement('h2');
@@ -28,7 +29,32 @@ function createProjectTree(){
 
 function createProjectForm(){
     const createProjectContainer = document.createElement('createProjectForm');
+    createProjectContainer.classList.add('createProjectForm');
+    const folderIcon = new Image();
+    folderIcon.classList.add('folderIcon');
+    folderIcon.src = folderIconImg;
+    const inputProjectName = document.createElement('input');
+    inputProjectName.classList.add('inputProject');
+    const inputContainer = document.createElement('inputContainer');
+    inputContainer.classList.add('inputContainer');
+    inputContainer.appendChild(folderIcon);
+    inputContainer.appendChild(inputProjectName);
+
+    const cancelButton = document.createElement('button');
+    cancelButton.classList.add('projectFormButton');
+    cancelButton.innerHTML = 'Cancel';
+    const createButton = document.createElement('button');
+    createButton.classList.add('projectFormButton');
+    createButton.innerHTML = 'Create';
+    const buttonContainer = document.createElement('buttonContainer');
+    buttonContainer.classList.add('projectButtonContainer');
+    buttonContainer.appendChild(cancelButton);
+    buttonContainer.appendChild(createButton);
+
+    createProjectContainer.appendChild(inputContainer);
+    createProjectContainer.appendChild(buttonContainer);
     
+
     return createProjectContainer;
 }
 
