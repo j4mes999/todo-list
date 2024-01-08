@@ -88,7 +88,6 @@
 
   .projectPane{
     display: flex;
-    align-items: center;
     flex-direction: column;
     height: auto;
     background-color: var(--background-body);
@@ -123,14 +122,14 @@
     padding: 10px 15px;
     text-align: center;
     transition: 200ms;
-    width: 100%;
+    width: 100px;
     box-sizing: border-box;
     border: 0;
     font-size: 16px;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    flex: 1;
+    margin: 10px;
   }
 
   .createProjectForm{
@@ -141,6 +140,11 @@
     border-bottom: solid 2px white;
     border-style: dotted;
     padding: 10px;
+  }
+
+  .inputProjectName{
+    flex: 1;
+    margin: 5px;
   }
 
   @media (max-width: 800px) {

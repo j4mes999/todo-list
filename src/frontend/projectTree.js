@@ -34,7 +34,7 @@ function createProjectForm(){
     folderIcon.classList.add('folderIcon');
     folderIcon.src = folderIconImg;
     const inputProjectName = document.createElement('input');
-    inputProjectName.classList.add('inputProject');
+    inputProjectName.classList.add('inputProjectName');
     const inputContainer = document.createElement('inputContainer');
     inputContainer.classList.add('inputContainer');
     inputContainer.appendChild(folderIcon);
