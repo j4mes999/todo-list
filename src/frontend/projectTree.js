@@ -21,6 +21,7 @@ function createProjectTree(){
 
     createProjectLink.addEventListener('click', () => {
         projectPane.insertBefore(createProjectForm(),createProjectLink);
+        createProjectLink.disabled = 'true';
     })
 
     return projectPane;
@@ -53,6 +54,14 @@ function createProjectForm(){
 
     createProjectContainer.appendChild(inputContainer);
     createProjectContainer.appendChild(buttonContainer);
+
+    cancelButton.addEventListener('click', () => {
+        const projectForm = document.getElementsByClassName('createProjectForm');
+        console.log('projectTree.js cancel button was clicked'+projectForm.getElementsByClassName);
+        projectForm[0].style.display = 'none';
+        const projectButton = document.getElementsByClassName('createProjectButton');
+        projectButton[0].disabled = false;
+    });
     
 
     return createProjectContainer;
