@@ -1,6 +1,8 @@
 import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
-//import createProjectService from '../backend/service/projectService';
+import serviceCreateProject from '../backend/service/projectService';
+
+const INPUT_PLACE_HOLDER = 'Enter project name'; 
 
 function createProjectTree(){
     const projectTitle = document.createElement('h2');
@@ -20,16 +22,7 @@ function createProjectTree(){
     projectPane.appendChild(projectTitle);
     projectPane.appendChild(createProjectLink);
 
-    createProjectLink.addEventListener('click', () => {
-        const projectForms = document.getElementsByClassName('createProjectForm');
-        if(projectForms.length == 0){
-            projectPane.insertBefore(createProjectForm(),createProjectLink);
-        }else{
-            projectForms[0].style.display = 'block';
-        }
-        
-        createProjectLink.disabled = 'true';
-    })
+    createProjectEvent(createProjectLink, projectPane);
 
     return projectPane;
 
@@ -43,7 +36,8 @@ function createProjectForm(){
     folderIcon.src = folderIconImg;
     const inputProjectName = document.createElement('input');
     inputProjectName.classList.add('inputProjectName');
-    inputProjectName.placeholder = 'Enter project name';
+    inputProjectName.placeholder = INPUT_PLACE_HOLDER;
+    console.log('projectTree.js createProjectForm was called');
     const inputContainer = document.createElement('inputContainer');
     inputContainer.classList.add('inputContainer');
     inputContainer.appendChild(folderIcon);
@@ -71,19 +65,43 @@ function createProjectForm(){
 
 export default createProjectTree;
 
+//Event Listeners:
 function cancelButtonEvent(cancelButton) {
     cancelButton.addEventListener('click', () => {
-        const projectForm = document.getElementsByClassName('createProjectForm');
-        console.log('projectTree.js cancel button was clicked' + projectForm.getElementsByClassName);
-        projectForm[0].style.display = 'none';
-        const projectButton = document.getElementsByClassName('createProjectButton');
-        projectButton[0].disabled = false;
+        dissapearProjectForm();
+        enableCreateProjectButton();
     });
 }
 
 function createButtonEvent(createButton){
     createButton.addEventListener('click', () => {
-        
-
+        const projectName = document.getElementsByClassName('inputProjectName');
+        serviceCreateProject(projectName[0].value);
+        dissapearProjectForm();
+        enableCreateProjectButton();
     });
+}
+
+function createProjectEvent(createProjectLink, projectPane) {
+    createProjectLink.addEventListener('click', () => {
+        const projectForms = document.getElementsByClassName('createProjectForm');
+        if (projectForms.length == 0) {
+            projectPane.insertBefore(createProjectForm(), createProjectLink);
+        } else {
+            projectForms[0].style.display = 'block';
+            document.getElementsByClassName('inputProjectName')[0].value = '';
+        }
+
+        createProjectLink.disabled = 'true';
+    });
+}
+
+function dissapearProjectForm(){
+    const projectForm = document.getElementsByClassName('createProjectForm');
+    projectForm[0].style.display = 'none';
+}
+
+function enableCreateProjectButton() {
+    const projectButton = document.getElementsByClassName('createProjectButton');
+    projectButton[0].disabled = false;
 }

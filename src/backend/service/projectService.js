@@ -1,9 +1,9 @@
 import createProject from "../project";
-import saveProject from "./backend/persistence/storageManager";
+import {saveProject} from "../persistence/storageManager";
 
-function createProjectService(name){
+function serviceCreateProject(name){
   const project = createProject(name);
   saveProject(project);
 }
 
-export default createProjectService;
+export default serviceCreateProject;
