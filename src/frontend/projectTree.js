@@ -76,7 +76,7 @@ function cancelButtonEvent(cancelButton) {
 function createButtonEvent(createButton){
     createButton.addEventListener('click', () => {
         const projectName = document.getElementsByClassName('inputProjectName');
-        serviceCreateProject(projectName[0].value);
+        const project = serviceCreateProject(projectName[0].value);
         dissapearProjectForm();
         enableCreateProjectButton();
     });
