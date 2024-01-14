@@ -77,7 +77,8 @@
 
   .bodyPane,
   .projectButtonContainer,
-  inputContainer{
+  inputContainer,
+  projectItem{
     display: flex;
     flex-direction: row;
   }
@@ -145,6 +146,14 @@
   .inputProjectName{
     flex: 1;
     margin: 5px;
+  }
+
+  .projectName{
+    color: var(--main-font-color);
+  }
+
+  .projectItem{
+    align-items: center;
   }
 
   @media (max-width: 800px) {

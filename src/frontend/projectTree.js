@@ -2,6 +2,7 @@ import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
 import serviceCreateProject from '../backend/service/projectService';
 
+
 const INPUT_PLACE_HOLDER = 'Enter project name'; 
 
 function createProjectTree(){

@@ -1,13 +1,31 @@
 import folderIconImg from '../media/folderIconWhite.png'
+import serviceCreateProject from '../../backend/service/projectService';
 
 let projects = [];
 
 function addProjectToList(project){
     projects.push(project);
-    refreshView();
+    refreshView(project);
 }
 
-function refreshView(){
+function initializeProjectList(){
+  const defaultProject = serviceCreateProject('default');
+  projects.push(defaultProject);
+  refreshView(defaultProject);
+}
+
+function refreshView(project){
+    let projectList = document.getElementById('projectList');
+    if(projectList == null){
+        projectList = document.createElement('projectList');
+        projectList.classList.add('projectList');
+        projectList.appendChild(createProjectView(project));
+        const projectPane = document.getElementsByClassName('subTitleProject')[0];
+        projectPane.insertAdjacentElement('afterend',projectList);
+        //projectList.insertAdjacentElement('afterbegin',projectPane[0]);
+        
+        //projectPane.insertBefore(projectList,document.getElementsByClassName('createProjectButton')[0]);
+    }
     for(let project of projects){
 
     }
@@ -24,5 +42,10 @@ function createProjectView(project){
 
     const projectItem = document.createElement('projectItem');
     projectItem.classList.add('projectItem');
-    return null;
+    projectItem.appendChild(folderIcon);
+    projectItem.appendChild(projectName);
+
+    return projectItem;
 }
+
+export {addProjectToList, initializeProjectList};
