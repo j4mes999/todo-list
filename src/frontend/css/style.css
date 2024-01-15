@@ -150,10 +150,13 @@
 
   .projectName{
     color: var(--main-font-color);
+    margin: 5px;
   }
 
   .projectItem{
     align-items: center;
+    margin:10px;
+    width: 264px;
   }
 
   @media (max-width: 800px) {

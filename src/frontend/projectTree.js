@@ -1,6 +1,7 @@
 import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
 import serviceCreateProject from '../backend/service/projectService';
+import { addProjectToList } from './components/projectList';
 
 
 const INPUT_PLACE_HOLDER = 'Enter project name'; 
@@ -78,6 +79,7 @@ function createButtonEvent(createButton){
     createButton.addEventListener('click', () => {
         const projectName = document.getElementsByClassName('inputProjectName');
         const project = serviceCreateProject(projectName[0].value);
+        addProjectToList(project);
         dissapearProjectForm();
         enableCreateProjectButton();
     });

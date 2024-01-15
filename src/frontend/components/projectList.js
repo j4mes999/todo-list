@@ -19,16 +19,19 @@ function refreshView(project){
     if(projectList == null){
         projectList = document.createElement('projectList');
         projectList.classList.add('projectList');
+        projectList.setAttribute('id','projectList');
         projectList.appendChild(createProjectView(project));
         const projectPane = document.getElementsByClassName('subTitleProject')[0];
         projectPane.insertAdjacentElement('afterend',projectList);
-        //projectList.insertAdjacentElement('afterbegin',projectPane[0]);
-        
-        //projectPane.insertBefore(projectList,document.getElementsByClassName('createProjectButton')[0]);
+    }else{
+        addProjectToListView(project);
     }
-    for(let project of projects){
+   
+}
 
-    }
+function addProjectToListView(project){
+    const projectList = document.getElementById('projectList');
+    projectList.appendChild(createProjectView(project));
 }
 
 function createProjectView(project){
