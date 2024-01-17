@@ -1,7 +1,7 @@
 import createHeader from "./header";
 import createFooter from "./footer";
 import createProjectTree from "./projectTree";
-import createTaskPane from "./taskpane";
+import {createTaskPane} from "./taskpane";
 
 function loadWebsite(){
     const content = document.getElementById('content');

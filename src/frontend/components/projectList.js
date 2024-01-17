@@ -1,5 +1,6 @@
 import folderIconImg from '../media/folderIconWhite.png'
 import serviceCreateProject from '../../backend/service/projectService';
+import { refreshTaskPane } from '../taskpane';
 
 let projects = [];
 
@@ -49,7 +50,7 @@ function createProjectView(project){
     projectItem.appendChild(projectName);
 
     projectItem.addEventListener('click', () => {
-        console.log('a projectItem was clicked');
+        refreshTaskPane(project);
     });
 
     return projectItem;

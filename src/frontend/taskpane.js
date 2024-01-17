@@ -12,4 +12,9 @@ function createTaskPane() {
 
 }
 
-export default createTaskPane;
+function refreshTaskPane(project){
+  console.log('taskPane.js project name:'+project.name);
+  console.log('taskPane.js project id:'+project.id);
+}
+
+export {createTaskPane, refreshTaskPane};
