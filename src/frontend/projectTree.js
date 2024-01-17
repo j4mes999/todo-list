@@ -39,7 +39,6 @@ function createProjectForm(){
     const inputProjectName = document.createElement('input');
     inputProjectName.classList.add('inputProjectName');
     inputProjectName.placeholder = INPUT_PLACE_HOLDER;
-    console.log('projectTree.js createProjectForm was called');
     const inputContainer = document.createElement('inputContainer');
     inputContainer.classList.add('inputContainer');
     inputContainer.appendChild(folderIcon);
@@ -51,6 +50,7 @@ function createProjectForm(){
     const createButton = document.createElement('button');
     createButton.classList.add('projectFormButton');
     createButton.innerHTML = 'Create';
+    createButton.type = 'submit';
     const buttonContainer = document.createElement('buttonContainer');
     buttonContainer.classList.add('projectButtonContainer');
     buttonContainer.appendChild(cancelButton);
@@ -61,6 +61,11 @@ function createProjectForm(){
 
     cancelButtonEvent(cancelButton);
     createButtonEvent(createButton);
+    inputProjectName.addEventListener('keypress', function(event){
+        if (event.key === 'Enter'){
+            createProjectAction();
+        }
+    });
 
     return createProjectContainer;
 }
@@ -77,12 +82,16 @@ function cancelButtonEvent(cancelButton) {
 
 function createButtonEvent(createButton){
     createButton.addEventListener('click', () => {
-        const projectName = document.getElementsByClassName('inputProjectName');
-        const project = serviceCreateProject(projectName[0].value);
-        addProjectToList(project);
-        dissapearProjectForm();
-        enableCreateProjectButton();
+        createProjectAction();
     });
+}
+
+function createProjectAction() {
+    const projectName = document.getElementsByClassName('inputProjectName');
+    const project = serviceCreateProject(projectName[0].value);
+    addProjectToList(project);
+    dissapearProjectForm();
+    enableCreateProjectButton();
 }
 
 function createProjectEvent(createProjectLink, projectPane) {

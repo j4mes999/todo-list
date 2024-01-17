@@ -48,6 +48,10 @@ function createProjectView(project){
     projectItem.appendChild(folderIcon);
     projectItem.appendChild(projectName);
 
+    projectItem.addEventListener('click', () => {
+        console.log('a projectItem was clicked');
+    });
+
     return projectItem;
 }
 

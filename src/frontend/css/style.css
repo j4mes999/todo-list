@@ -156,9 +156,16 @@
   .projectItem{
     align-items: center;
     margin:10px;
-    width: 264px;
+    min-width: 264px;
+    cursor: pointer;
   }
 
+  /* Hovering selectors*/
+  .projectItem:hover{
+    background: rgb(75, 72, 22);
+  }
+
+  /* Responsive design*/
   @media (max-width: 800px) {
     .bodyPane{
       flex-direction: column;
