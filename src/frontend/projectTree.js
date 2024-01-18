@@ -57,8 +57,8 @@ function createProjectForm(){
     createButton.type = 'submit';
     const buttonContainer = document.createElement('buttonContainer');
     buttonContainer.classList.add('projectButtonContainer');
-    buttonContainer.appendChild(cancelButton);
     buttonContainer.appendChild(createButton);
+    buttonContainer.appendChild(cancelButton);
 
     createProjectContainer.appendChild(inputContainer);
     createProjectContainer.appendChild(buttonContainer);
@@ -107,7 +107,7 @@ function createProjectEvent(createProjectLink, projectPane) {
             projectForms[0].style.display = 'block';
             document.getElementsByClassName('inputProjectName')[0].value = '';
         }
-
+        document.getElementsByClassName('inputProjectName')[0].focus();
         createProjectLink.disabled = 'true';
     });
 }

@@ -1,5 +1,6 @@
 import createTaskIcon from './media/plusSignWhite.svg'
-
+import createTaskForm
+ from './components/taskForm';
 function createTaskPane() {
 
     const taskTitle = document.createElement('p');
@@ -17,14 +18,16 @@ function createTaskPane() {
     addTaskLabel.innerHTML = 'Add Task';
     addTaskLabel.classList.add('addTaskLabel');
 
-    const addTaskContainer = document.createElement('button');
-    addTaskContainer.type = 'button';
-    addTaskContainer.classList.add('createTaskButton');
-    addTaskContainer.appendChild(createTaskImage);
-    addTaskContainer.appendChild(addTaskLabel);
+    const addTaskButton = document.createElement('button');
+    addTaskButton.type = 'button';
+    addTaskButton.classList.add('createTaskButton');
+    addTaskButton.appendChild(createTaskImage);
+    addTaskButton.appendChild(addTaskLabel);
     
     taskPane.appendChild(taskTitle);
-    taskPane.appendChild(addTaskContainer);
+    taskPane.appendChild(addTaskButton);
+
+    addTaskButtonAction(addTaskButton,taskPane);
 
     return taskPane;
 
@@ -33,6 +36,19 @@ function createTaskPane() {
 function refreshTaskPane(project){
   console.log('taskPane.js project name:'+project.name);
   console.log('taskPane.js project id:'+project.id);
+}
+
+function addTaskButtonAction(addTaskButton, taskPane){
+  addTaskButton.addEventListener('click', () => {
+    const taskForm = document.getElementsByClassName('createTaskForm');
+    if (taskForm.length == 0){
+      taskPane.insertBefore(createTaskForm(),addTaskButton);
+    }else {
+      taskForm[0].classList.toggle('createTaskFormHide');
+    }
+    
+    addTaskButton.disabled = 'true';
+  });
 }
 
 export {createTaskPane, refreshTaskPane};
