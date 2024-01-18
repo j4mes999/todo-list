@@ -17,7 +17,11 @@ function createProjectTree(){
     const icon = new Image();
     icon.classList.add('createProjectIcon');
     icon.src = createProjectIcon;
+    const createProjectLabel = document.createElement('createProjectLabel');
+    createProjectLabel.innerHTML = 'Add Project';
+    createProjectLabel.classList.add('createProjectLabel');
     createProjectLink.appendChild(icon);
+    createProjectLink.appendChild(createProjectLabel);
 
     const projectPane = document.createElement('projectPane');
     projectPane.classList.add('projectPane');

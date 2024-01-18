@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    width: 100%;
     padding: 1rem;
     background-color: var(--background-body);
     /*border-bottom: 1px solid var(--border-color);*/
@@ -83,6 +82,15 @@
     flex-direction: row;
   }
 
+  .addTaskLabel{
+    color: var(--main-black-color-font);
+    font-size: 20px;
+  }
+
+  .createProjectLabel{
+    color: var(--main-font-color);
+  }
+
   .projectButtonContainer{
     justify-content: center;
   }
@@ -98,6 +106,7 @@
 
   .taskPane{
     display: flex;
+    flex-direction: column;
     flex: 70%;
     height: auto;
     background-color: var(--background-task-pane);
@@ -108,10 +117,26 @@
     margin: 5px;
   }
 
+  .createTaskIcon{
+    width: 30px;
+    margin: 5px;
+  }
+
   .createProjectButton{
     background: transparent;
     cursor: pointer;
     border: solid 2px transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .createTaskButton{
+    background: transparent;
+    cursor: pointer;
+    border: solid 2px transparent;
+    display: flex;
+    align-items: center;
   }
 
   .projectFormButton{
@@ -161,8 +186,10 @@
   }
 
   /* Hovering selectors*/
-  .projectItem:hover{
-    background: rgb(75, 72, 22);
+  .projectItem:hover,
+  .createProjectButton:hover,
+  .createTaskButton:hover{
+    background: rgb(184, 183, 178);    
   }
 
   /* Responsive design*/
