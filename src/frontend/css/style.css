@@ -198,7 +198,8 @@
     gap: 1em;
   }
 
-  .inputTaskData{
+  .inputTaskData,
+  .prioritySelect{
     background-color: #FFEE80;
     border: none;
   }

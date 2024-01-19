@@ -1,3 +1,5 @@
+import {createElement, createOption} from "./htmlElement";
+
 function createTaskForm(){
   const createTaskFormContainer = document.createElement('createTaskForm');
   createTaskFormContainer.classList.add('createTaskForm');
@@ -14,6 +16,8 @@ function createTaskForm(){
   inputPriority.classList.add('inputTaskData');
   inputPriority.placeholder = 'Enter Priority';
 
+  const prioritySelect = createOptionList();
+  //TODO refactor code below into a component that creates buttons:
   const createButton = document.createElement('button');
   createButton.classList.add('taskFormButton');
   createButton.innerHTML = 'Create';
@@ -30,7 +34,7 @@ function createTaskForm(){
   createTaskFormContainer.appendChild(inputTitle);
   createTaskFormContainer.appendChild(inputDescription);
   createTaskFormContainer.appendChild(inputDate);
-  createTaskFormContainer.appendChild(inputPriority);
+  createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
   cancelButtonAction(cancelButton);
@@ -38,6 +42,15 @@ function createTaskForm(){
 
   return createTaskFormContainer;
 
+}
+
+function createOptionList() {
+  const prioritySelect = createElement('select', 'prioritySelect', null);
+  prioritySelect.appendChild(createOption('optionFirst', 0, 'Select Priority'));
+  prioritySelect.appendChild(createOption('option', 1, 'Low'));
+  prioritySelect.appendChild(createOption('option', 2, 'Normal'));
+  prioritySelect.appendChild(createOption('option', 3, 'High'));
+  return prioritySelect;
 }
 
 function cancelButtonAction(cancelButton){
