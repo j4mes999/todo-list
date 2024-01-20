@@ -65,7 +65,7 @@ function createButtonEvent(createButton){
 }
 
 function createProjectAction() {
-    const projectName = document.getElementsByClassName('inputProjectName');
+    const projectName = document.getElementsByClassName(Project.InputName);
     const project = serviceCreateProject(projectName[0].value);
     addProjectToList(project);
     dissapearProjectForm();
@@ -74,26 +74,26 @@ function createProjectAction() {
 
 function createProjectEvent(createProjectLink, projectPane) {
     createProjectLink.addEventListener('click', () => {
-        const projectForms = document.getElementsByClassName('createProjectForm');
+        const projectForms = document.getElementsByClassName(Project.CreateForm);
         if (projectForms.length == 0) {
             projectPane.insertBefore(createProjectForm(), createProjectLink);
         } else {
             projectForms[0].style.display = 'block';
-            document.getElementsByClassName('inputProjectName')[0].value = '';
+            document.getElementsByClassName(Project.InputName)[0].value = '';
         }
-        document.getElementsByClassName('inputProjectName')[0].focus();
+        document.getElementsByClassName(Project.InputName)[0].focus();
         createProjectLink.disabled = 'true';
     });
 }
 
 function dissapearProjectForm(){
-    const projectForm = document.getElementsByClassName('createProjectForm');
-    projectForm[0].style.display = 'none';
+    const projectForm = document.getElementsByClassName(Project.CreateForm)[0];
+    projectForm.style.display = 'none';
 }
 
 function enableCreateProjectButton() {
-    const projectButton = document.getElementsByClassName('createProjectButton');
-    projectButton[0].disabled = false;
+    const projectButton = document.getElementsByClassName(Project.CreateButtonMain)[0];
+    projectButton.disabled = false;
 }
 
 export default createProjectTree;

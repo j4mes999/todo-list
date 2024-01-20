@@ -23,7 +23,7 @@ function refreshView(project){
         projectList = createElement(Project.List, Project.List);
         projectList.setAttribute('id',Project.List);
         projectList.appendChild(createProjectView(project));
-        const projectPane = document.getElementsByClassName('subTitleProject')[0];
+        const projectPane = document.getElementsByClassName(Project.SubTitle)[0];
         projectPane.insertAdjacentElement('afterend',projectList);
     }else{
         addProjectToListView(project);

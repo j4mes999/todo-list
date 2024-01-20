@@ -1,18 +1,16 @@
 import createTaskIcon from './media/plusSignWhite.svg'
-import createTaskForm
- from './components/taskForm';
+import createTaskForm from './components/taskForm';
+import { createButton, createElement, createImage, createInput } from './components/htmlElement';
+import { Task } from './constants/uiConstants';
+
 function createTaskPane() {
 
     const taskTitle = document.createElement('p');
     taskTitle.classList.add('subTitle','subTitleTask');
     taskTitle.innerHTML = 'Project Details';
-
+    //TODO refactor me please!
     const taskPane = document.createElement('taskPane');
     taskPane.classList.add('taskPane');
-
-    const createTaskImage = new Image();
-    createTaskImage.classList.add('createTaskIcon');
-    createTaskImage.src = createTaskIcon;
 
     const addTaskLabel = document.createElement('addTaskLabel');
     addTaskLabel.innerHTML = 'Add Task';
@@ -21,7 +19,7 @@ function createTaskPane() {
     const addTaskButton = document.createElement('button');
     addTaskButton.type = 'button';
     addTaskButton.classList.add('createTaskButton');
-    addTaskButton.appendChild(createTaskImage);
+    addTaskButton.appendChild(createImage(Task.CreateIcon,createTaskIcon));
     addTaskButton.appendChild(addTaskLabel);
     
     taskPane.appendChild(taskTitle);
