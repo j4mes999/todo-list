@@ -1,44 +1,23 @@
-import {createElement, createOption} from "./htmlElement";
+import {createElement, createOption, createInput, createButton} from './htmlElement';
+import { Task } from '../constants/uiConstants';
 
 function createTaskForm(){
-  const createTaskFormContainer = document.createElement('createTaskForm');
-  createTaskFormContainer.classList.add('createTaskForm');
-  const inputTitle = document.createElement('input');
-  inputTitle.classList.add('inputTaskData');
-  inputTitle.placeholder = 'Enter Title';
-  const inputDescription = document.createElement('input');
-  inputDescription.classList.add('inputTaskData');
-  inputDescription.placeholder = 'Enter Description';
-  const inputDate = document.createElement('input');
-  inputDate.classList.add('inputTaskData');
-  inputDate.placeholder = 'Due Date';
-  const inputPriority = document.createElement('input');
-  inputPriority.classList.add('inputTaskData');
-  inputPriority.placeholder = 'Enter Priority';
-
+  const createTaskFormContainer = createElement(Task.Form, Task.Form);
   const prioritySelect = createOptionList();
-  //TODO refactor code below into a component that creates buttons:
-  const createButton = document.createElement('button');
-  createButton.classList.add('taskFormButton');
-  createButton.innerHTML = 'Create';
-  createButton.type = 'submit';
-  const cancelButton = document.createElement('button');
-  cancelButton.classList.add('taskFormButton');
-  cancelButton.innerHTML = 'Cancel';
-  const buttonContainer = document.createElement('taskFormButtonContainer');
-  buttonContainer.classList.add('taskFormButtonContainer');
-  buttonContainer.appendChild(createButton);
-  buttonContainer.appendChild(cancelButton);
+  const createButtonElement = createButton(Task.ButtonForm, 'Create', 'submit');
+  const cancelButtonElement = createButton(Task.ButtonForm, 'Cancel', null);
+  const buttonContainer = createElement(Task.ButtonContainer, Task.ButtonContainer);
+  buttonContainer.appendChild(createButtonElement);
+  buttonContainer.appendChild(cancelButtonElement);
 
-
-  createTaskFormContainer.appendChild(inputTitle);
-  createTaskFormContainer.appendChild(inputDescription);
-  createTaskFormContainer.appendChild(inputDate);
+  createTaskFormContainer.appendChild(createInput(Task.Input, 'Enter Title'));
+  createTaskFormContainer.appendChild(createInput(Task.Input, 'Enter Description'));
+  createTaskFormContainer.appendChild(createInput(Task.Input, 'Due Date'));
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
-  cancelButtonAction(cancelButton);
-  createButtonAction(createButton);
+  cancelButtonAction(cancelButtonElement);
+  createButtonAction(createButtonElement);
 
   return createTaskFormContainer;
 
@@ -60,7 +39,6 @@ function cancelButtonAction(cancelButton){
     
     const addTaskButton = document.getElementsByClassName('createTaskButton')[0];
     addTaskButton.disabled = false;
-    
   });
 }
 
