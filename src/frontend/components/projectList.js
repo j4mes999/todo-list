@@ -1,6 +1,8 @@
 import folderIconImg from '../media/folderIconWhite.png'
 import serviceCreateProject from '../../backend/service/projectService';
 import { refreshTaskPane } from '../taskpane';
+import { Project } from '../constants/uiConstants';
+import { createElement, createImage } from './htmlElement';
 
 let projects = [];
 
@@ -16,38 +18,27 @@ function initializeProjectList(){
 }
 
 function refreshView(project){
-    let projectList = document.getElementById('projectList');
+    let projectList = document.getElementById(Project.List);
     if(projectList == null){
-        projectList = document.createElement('projectList');
-        projectList.classList.add('projectList');
-        projectList.setAttribute('id','projectList');
+        projectList = createElement(Project.List, Project.List);
+        projectList.setAttribute('id',Project.List);
         projectList.appendChild(createProjectView(project));
         const projectPane = document.getElementsByClassName('subTitleProject')[0];
         projectPane.insertAdjacentElement('afterend',projectList);
     }else{
         addProjectToListView(project);
     }
-   
 }
 
 function addProjectToListView(project){
-    const projectList = document.getElementById('projectList');
+    const projectList = document.getElementById(Project.List);
     projectList.appendChild(createProjectView(project));
 }
 
 function createProjectView(project){
-    const folderIcon = new Image();
-    folderIcon.classList.add('folderIcon');
-    folderIcon.src = folderIconImg;
-
-    const projectName = document.createElement('projectName');
-    projectName.innerHTML = project.name;
-    projectName.classList.add('projectName');
-
-    const projectItem = document.createElement('projectItem');
-    projectItem.classList.add('projectItem');
-    projectItem.appendChild(folderIcon);
-    projectItem.appendChild(projectName);
+    const projectItem = createElement(Project.Item, Project.Item);
+    projectItem.appendChild(createImage(Project.FolderIcon,folderIconImg));
+    projectItem.appendChild(createElement(Project.Name, Project.Name, project.name));
 
     projectItem.addEventListener('click', () => {
         refreshTaskPane(project);

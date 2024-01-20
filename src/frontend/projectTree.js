@@ -2,29 +2,18 @@ import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
 import serviceCreateProject from '../backend/service/projectService';
 import { addProjectToList } from './components/projectList';
-
-
-const INPUT_PLACE_HOLDER = 'Enter project name'; 
+import { createButton, createElement, createImage, createInput } from './components/htmlElement';
+import { Project } from './constants/uiConstants'; 
 
 function createProjectTree(){
-    const projectTitle = document.createElement('h2');
-    projectTitle.classList.add('subTitle','subTitleProject');
-    projectTitle.innerHTML = 'Projects';
+    const projectTitle = createElement('h2', 'subtitle', 'Projects');
+    projectTitle.classList.add(Project.SubTitle);
 
-    const createProjectLink = document.createElement('button');
-    createProjectLink.type = 'button';
-    createProjectLink.classList.add('createProjectButton');
-    const icon = new Image();
-    icon.classList.add('createProjectIcon');
-    icon.src = createProjectIcon;
-    const createProjectLabel = document.createElement('createProjectLabel');
-    createProjectLabel.innerHTML = 'Add Project';
-    createProjectLabel.classList.add('createProjectLabel');
-    createProjectLink.appendChild(icon);
-    createProjectLink.appendChild(createProjectLabel);
+    const createProjectLink = createButton(Project.CreateButtonMain, null, 'button');
+    createProjectLink.appendChild(createImage(Project.CreateIcon, createProjectIcon));
+    createProjectLink.appendChild(createElement(Project.CreateLabel, Project.CreateLabel, 'Add Project'));
 
-    const projectPane = document.createElement('projectPane');
-    projectPane.classList.add('projectPane');
+    const projectPane = createElement(Project.Pane, Project.Pane);
     projectPane.appendChild(projectTitle);
     projectPane.appendChild(createProjectLink);
 
@@ -35,36 +24,23 @@ function createProjectTree(){
 }
 
 function createProjectForm(){
-    const createProjectContainer = document.createElement('createProjectForm');
-    createProjectContainer.classList.add('createProjectForm');
-    const folderIcon = new Image();
-    folderIcon.classList.add('folderIcon');
-    folderIcon.src = folderIconImg;
-    const inputProjectName = document.createElement('input');
-    inputProjectName.classList.add('inputProjectName');
-    inputProjectName.placeholder = INPUT_PLACE_HOLDER;
-    const inputContainer = document.createElement('inputContainer');
-    inputContainer.classList.add('inputContainer');
-    inputContainer.appendChild(folderIcon);
+    const createProjectContainer = createElement(Project.CreateForm,Project.CreateForm);
+    const inputProjectName = createInput(Project.InputName, 'Enter project name');
+    const inputContainer = createElement(Project.InputContainer, Project.InputContainer);
+    inputContainer.appendChild(createImage(Project.FolderIcon,folderIconImg));
     inputContainer.appendChild(inputProjectName);
 
-    const cancelButton = document.createElement('button');
-    cancelButton.classList.add('projectFormButton');
-    cancelButton.innerHTML = 'Cancel';
-    const createButton = document.createElement('button');
-    createButton.classList.add('projectFormButton');
-    createButton.innerHTML = 'Create';
-    createButton.type = 'submit';
-    const buttonContainer = document.createElement('buttonContainer');
-    buttonContainer.classList.add('projectButtonContainer');
-    buttonContainer.appendChild(createButton);
+    const cancelButton = createButton(Project.ButtonForm,'Cancel');
+    const createButtonElement = createButton(Project.ButtonForm, 'Create', 'submit');
+    const buttonContainer = createElement(Project.ButtonContainer, Project.ButtonClass);
+    buttonContainer.appendChild(createButtonElement);
     buttonContainer.appendChild(cancelButton);
 
     createProjectContainer.appendChild(inputContainer);
     createProjectContainer.appendChild(buttonContainer);
 
     cancelButtonEvent(cancelButton);
-    createButtonEvent(createButton);
+    createButtonEvent(createButtonElement);
     inputProjectName.addEventListener('keypress', function(event){
         if (event.key === 'Enter'){
             createProjectAction();
@@ -73,8 +49,6 @@ function createProjectForm(){
 
     return createProjectContainer;
 }
-
-export default createProjectTree;
 
 //Event Listeners:
 function cancelButtonEvent(cancelButton) {
@@ -121,3 +95,5 @@ function enableCreateProjectButton() {
     const projectButton = document.getElementsByClassName('createProjectButton');
     projectButton[0].disabled = false;
 }
+
+export default createProjectTree;

@@ -24,7 +24,7 @@ function createTaskForm(){
 }
 
 function createOptionList() {
-  const prioritySelect = createElement('select', 'prioritySelect', null);
+  const prioritySelect = createElement('select', 'prioritySelect');
   prioritySelect.appendChild(createOption('optionFirst', 0, 'Select Priority'));
   prioritySelect.appendChild(createOption('option', 1, 'Low'));
   prioritySelect.appendChild(createOption('option', 2, 'Normal'));

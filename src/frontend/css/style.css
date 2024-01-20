@@ -41,6 +41,7 @@
 
   .subTitleProject{
     color: var(--main-font-color);
+    margin: 10px;
   }
 
   .subTitleTask{

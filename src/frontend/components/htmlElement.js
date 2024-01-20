@@ -34,6 +34,14 @@ function createButton(className, innerValue, type){
     }
     
     return button;
-  }
+}
 
-export {createElement, createOption, createInput, createButton};
+function createImage(className, imageFile){
+    const image = new Image();
+    image.classList.add(className);
+    image.src = imageFile;
+
+    return image;
+}
+
+export {createElement, createOption, createInput, createButton, createImage};
