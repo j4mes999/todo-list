@@ -1,24 +1,16 @@
 import githubIcon from './media/github.png';
-const MY_GIT_HUB_LINK = 'https://github.com/j4mes999';
+import { createElement, createImage } from './components/htmlElement';
+import { Footer } from './constants/uiConstants';
 
 function createFooter(){
-    const footer = document.createElement('footer');
-    footer.classList.add('footer');
-  
-    const footerText = document.createElement('p');
-    footerText.textContent = `Copyright © ${new Date().getFullYear()} Luis J. González`;
-    footerText.classList.add('textFooter');
+    const footer = createElement(Footer.GenericClass, Footer.GenericClass);
 
     const gitHubLink = document.createElement('a');
-    gitHubLink.href = MY_GIT_HUB_LINK;
+    gitHubLink.href = Footer.Link;
     gitHubLink.target = '_blank';
-    const githubImg = new Image();
-    githubImg.classList.add('githubIcon');
-    githubImg.src = githubIcon;
-    gitHubLink.appendChild(githubImg);
+    gitHubLink.appendChild(createImage(Footer.GitHubIcon,githubIcon));
 
-
-    footer.appendChild(footerText);
+    footer.appendChild(createElement('p', Footer.Text,`Copyright © ${new Date().getFullYear()} Luis J. González`));
     footer.appendChild(gitHubLink);
 
     return footer;

@@ -1,22 +1,13 @@
 import "./css/style.css";
 import headerIcon from './media/headerIcon.png'
+import { createElement, createImage } from './components/htmlElement';
+import { Header } from "./constants/uiConstants";
 
 function createHeader(){
-    const header = document.createElement('header');
-    header.classList.add('header');
-  
-    const title = document.createElement('h1');
-    title.textContent = 'To-do List';
-    title.classList.add('title');
+    const header = createElement(Header.GenericClass, Header.GenericClass);    
+    header.appendChild(createImage(Header.Icon,headerIcon));
+    header.appendChild(createElement('h1',Header.Title,'To-do List'));
 
-    const icon = new Image();
-    icon.classList.add('headerIcon');
-    icon.src = headerIcon;
-  
-    header.appendChild(icon);
-    header.appendChild(title);
-
-  
     return header;
 }
 

@@ -4,7 +4,11 @@ export const Task ={
     ButtonContainer: 'taskFormButtonContainer',
     ButtonForm: 'taskFormButton',
     CreateIcon: 'createTaskIcon',
-    AddLabel: 'addTaskLabel'
+    AddLabel: 'addTaskLabel',
+    SubTitle: 'subTitleTask',
+    Pane: 'taskPane',
+    CreateButton: 'createTaskButton',
+    FormHide: 'createTaskFormHide'
 
 }
 
@@ -24,4 +28,17 @@ export const Project = {
     ButtonForm: 'projectFormButton',
     ButtonContainer: 'buttonContainer',
     ButtonClass: 'projectButtonContainer'
+}
+
+export const Footer = {
+    GitHubIcon: 'githubIcon',
+    Text: 'textFooter',
+    GenericClass: 'footer',
+    Link: 'https://github.com/j4mes999'
+}
+
+export const Header = {
+    Icon: 'headerIcon',
+    GenericClass: 'header',
+    Title: 'title'
 }
