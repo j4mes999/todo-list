@@ -34,10 +34,10 @@ function createOptionList() {
 
 function cancelButtonAction(cancelButton){
   cancelButton.addEventListener('click', () => {
-    const createTaskForm = document.getElementsByClassName('createTaskForm')[0];
-    createTaskForm.classList.toggle('createTaskFormHide');
+    const createTaskForm = document.getElementsByClassName(Task.Form)[0];
+    createTaskForm.classList.toggle(Task.FormHide);
     
-    const addTaskButton = document.getElementsByClassName('createTaskButton')[0];
+    const addTaskButton = document.getElementsByClassName(Task.CreateButton)[0];
     addTaskButton.disabled = false;
   });
 }
