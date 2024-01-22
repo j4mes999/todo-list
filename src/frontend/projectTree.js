@@ -78,7 +78,7 @@ function createProjectEvent(createProjectLink, projectPane) {
         if (projectForms.length == 0) {
             projectPane.insertBefore(createProjectForm(), createProjectLink);
         } else {
-            projectForms[0].style.display = 'block';
+            projectForms[0].classList.toggle(Project.CreateFormHide);
             document.getElementsByClassName(Project.InputName)[0].value = '';
         }
         document.getElementsByClassName(Project.InputName)[0].focus();
@@ -88,7 +88,7 @@ function createProjectEvent(createProjectLink, projectPane) {
 
 function dissapearProjectForm(){
     const projectForm = document.getElementsByClassName(Project.CreateForm)[0];
-    projectForm.style.display = 'none';
+    projectForm.classList.toggle(Project.CreateFormHide);
 }
 
 function enableCreateProjectButton() {

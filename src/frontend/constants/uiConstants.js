@@ -23,6 +23,7 @@ export const Project = {
     CreateLabel: 'createProjectLabel',
     Pane: 'projectPane',
     CreateForm: 'createProjectForm',
+    CreateFormHide: 'createProjectFormHide',
     InputName: 'inputProjectName',
     InputContainer: 'inputContainer',
     ButtonForm: 'projectFormButton',
