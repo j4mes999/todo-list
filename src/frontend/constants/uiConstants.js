@@ -1,45 +1,45 @@
 export const Task ={
-    Form: 'createTaskForm',
-    Input: 'inputTaskData',
-    ButtonContainer: 'taskFormButtonContainer',
-    ButtonForm: 'taskFormButton',
-    CreateIcon: 'createTaskIcon',
-    AddLabel: 'addTaskLabel',
-    SubTitle: 'subTitleTask',
-    Pane: 'taskPane',
-    CreateButton: 'createTaskButton',
-    FormHide: 'createTaskFormHide'
+    FORM: 'createTaskForm',
+    INPUT: 'inputTaskData',
+    BUTTON_CONTAINER: 'taskFormButtonContainer',
+    BUTTON_FORM: 'taskFormButton',
+    CREATE_ICON: 'createTaskIcon',
+    ADD_LABEL: 'addTaskLabel',
+    SUB_TITLE: 'subTitleTask',
+    PANE: 'taskPane',
+    CREATE_BUTTON: 'createTaskButton',
+    FORM_HIDE: 'createTaskFormHide'
 
 }
 
 export const Project = {
-    List: 'projectList',
-    FolderIcon: 'folderIcon',
-    Name: 'projectName',
-    Item: 'projectItem',
-    SubTitle: 'subTitleProject',
-    CreateButtonMain: 'createProjectButton',
-    CreateIcon: 'createProjectIcon',
-    CreateLabel: 'createProjectLabel',
-    Pane: 'projectPane',
-    CreateForm: 'createProjectForm',
-    CreateFormHide: 'createProjectFormHide',
-    InputName: 'inputProjectName',
-    InputContainer: 'inputContainer',
-    ButtonForm: 'projectFormButton',
-    ButtonContainer: 'buttonContainer',
-    ButtonClass: 'projectButtonContainer'
+    LIST: 'projectList',
+    FOLDER_ICON: 'folderIcon',
+    NAME: 'projectName',
+    ITEM: 'projectItem',
+    SUB_TITLE: 'subTitleProject',
+    CREATE_BUTTON_MAIN: 'createProjectButton',
+    CREATE_ICON: 'createProjectIcon',
+    CREATE_LABEL: 'createProjectLabel',
+    PANE: 'projectPane',
+    CREATE_FORM: 'createProjectForm',
+    CREATE_FORM_HIDE: 'createProjectFormHide',
+    INPUT_NAME: 'inputProjectName',
+    INPUT_CONTAINER: 'inputContainer',
+    BUTTON_FORM: 'projectFormButton',
+    BUTTON_CONTAINER: 'buttonContainer',
+    BUTTON_CLASS: 'projectButtonContainer'
 }
 
 export const Footer = {
-    GitHubIcon: 'githubIcon',
-    Text: 'textFooter',
-    GenericClass: 'footer',
-    Link: 'https://github.com/j4mes999'
+    GIT_HUB_ICON: 'githubIcon',
+    TEXT: 'textFooter',
+    GENERIC_CLASS: 'footer',
+    LINK: 'https://github.com/j4mes999'
 }
 
 export const Header = {
-    Icon: 'headerIcon',
-    GenericClass: 'header',
-    Title: 'title'
+    ICON: 'headerIcon',
+    GENERIC_CLASS: 'header',
+    TITLE: 'title'
 }

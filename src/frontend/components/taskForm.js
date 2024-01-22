@@ -2,17 +2,17 @@ import {createElement, createOption, createInput, createButton} from './htmlElem
 import { Task } from '../constants/uiConstants';
 
 function createTaskForm(){
-  const createTaskFormContainer = createElement(Task.Form, Task.Form);
+  const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
   const prioritySelect = createOptionList();
-  const createButtonElement = createButton(Task.ButtonForm, 'Create', 'submit');
-  const cancelButtonElement = createButton(Task.ButtonForm, 'Cancel', null);
-  const buttonContainer = createElement(Task.ButtonContainer, Task.ButtonContainer);
+  const createButtonElement = createButton(Task.BUTTON_FORM, 'Create', 'submit');
+  const cancelButtonElement = createButton(Task.BUTTON_FORM, 'Cancel', null);
+  const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
   buttonContainer.appendChild(createButtonElement);
   buttonContainer.appendChild(cancelButtonElement);
 
-  createTaskFormContainer.appendChild(createInput(Task.Input, 'Enter Title'));
-  createTaskFormContainer.appendChild(createInput(Task.Input, 'Enter Description'));
-  createTaskFormContainer.appendChild(createInput(Task.Input, 'Due Date'));
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Title'));
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Description'));
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Due Date'));
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
@@ -34,10 +34,10 @@ function createOptionList() {
 
 function cancelButtonAction(cancelButton){
   cancelButton.addEventListener('click', () => {
-    const createTaskForm = document.getElementsByClassName(Task.Form)[0];
-    createTaskForm.classList.toggle(Task.FormHide);
+    const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
+    createTaskForm.classList.toggle(Task.FORM_HIDE);
     
-    const addTaskButton = document.getElementsByClassName(Task.CreateButton)[0];
+    const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
     addTaskButton.disabled = false;
   });
 }

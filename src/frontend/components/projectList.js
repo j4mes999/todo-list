@@ -18,12 +18,12 @@ function initializeProjectList(){
 }
 
 function refreshView(project){
-    let projectList = document.getElementById(Project.List);
+    let projectList = document.getElementById(Project.LIST);
     if(projectList == null){
-        projectList = createElement(Project.List, Project.List);
-        projectList.setAttribute('id',Project.List);
+        projectList = createElement(Project.LIST, Project.LIST);
+        projectList.setAttribute('id',Project.LIST);
         projectList.appendChild(createProjectView(project));
-        const projectPane = document.getElementsByClassName(Project.SubTitle)[0];
+        const projectPane = document.getElementsByClassName(Project.SUB_TITLE)[0];
         projectPane.insertAdjacentElement('afterend',projectList);
     }else{
         addProjectToListView(project);
@@ -31,14 +31,14 @@ function refreshView(project){
 }
 
 function addProjectToListView(project){
-    const projectList = document.getElementById(Project.List);
+    const projectList = document.getElementById(Project.LIST);
     projectList.appendChild(createProjectView(project));
 }
 
 function createProjectView(project){
-    const projectItem = createElement(Project.Item, Project.Item);
-    projectItem.appendChild(createImage(Project.FolderIcon,folderIconImg));
-    projectItem.appendChild(createElement(Project.Name, Project.Name, project.name));
+    const projectItem = createElement(Project.ITEM, Project.ITEM);
+    projectItem.appendChild(createImage(Project.FOLDER_ICON,folderIconImg));
+    projectItem.appendChild(createElement(Project.NAME, Project.NAME, project.name));
 
     projectItem.addEventListener('click', () => {
         refreshTaskPane(project);

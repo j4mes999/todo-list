@@ -3,14 +3,14 @@ import { createElement, createImage } from './components/htmlElement';
 import { Footer } from './constants/uiConstants';
 
 function createFooter(){
-    const footer = createElement(Footer.GenericClass, Footer.GenericClass);
+    const footer = createElement(Footer.GENERIC_CLASS, Footer.GENERIC_CLASS);
 
     const gitHubLink = document.createElement('a');
-    gitHubLink.href = Footer.Link;
+    gitHubLink.href = Footer.LINK;
     gitHubLink.target = '_blank';
-    gitHubLink.appendChild(createImage(Footer.GitHubIcon,githubIcon));
+    gitHubLink.appendChild(createImage(Footer.GIT_HUB_ICON,githubIcon));
 
-    footer.appendChild(createElement('p', Footer.Text,`Copyright © ${new Date().getFullYear()} Luis J. González`));
+    footer.appendChild(createElement('p', Footer.TEXT,`Copyright © ${new Date().getFullYear()} Luis J. González`));
     footer.appendChild(gitHubLink);
 
     return footer;
