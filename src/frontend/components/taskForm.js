@@ -12,7 +12,7 @@ function createTaskForm(){
 
   createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Title'));
   createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Description'));
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Due Date'));
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Due Date', 'date'));
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 

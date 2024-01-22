@@ -17,10 +17,13 @@ function createOption(className,innerValue,outerValue){
     return option;
 }
 
-function createInput(className, placeHolder){
+function createInput(className, placeHolder, type){
   const input = document.createElement('input');
   input.classList.add(className);
   input.placeholder = placeHolder;
+  if (type != null){
+    input.type = type;
+  }
 
   return input
 }
