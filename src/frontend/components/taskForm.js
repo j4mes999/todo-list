@@ -12,7 +12,12 @@ function createTaskForm(){
 
   createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Title'));
   createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Description'));
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Due Date', 'date'));
+  const dueDate = createInput(Task.INPUT, 'Due Date');
+  dueDate.onfocus = function(){
+    this.type = 'date';
+  };
+  dueDate.id = Task.DUE_DATE_ID;
+  createTaskFormContainer.appendChild(dueDate);
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
@@ -39,6 +44,8 @@ function cancelButtonAction(cancelButton){
     
     const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
     addTaskButton.disabled = false;
+
+    document.getElementById(Task.DUE_DATE_ID).type = '';
   });
 }
 
