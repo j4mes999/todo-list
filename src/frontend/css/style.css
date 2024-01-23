@@ -34,7 +34,8 @@
     margin-bottom: 0px;
   }
 
-  .subTitle{
+  .subTitle,
+  .projectInfo{
     font-size: 30px;
     margin: 10px;
   }

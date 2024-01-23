@@ -4,15 +4,14 @@ import { createButton, createElement, createImage } from './components/htmlEleme
 import { Task } from './constants/uiConstants';
 
 function createTaskPane() {
-    const taskTitle = createElement('p','subTitle', 'Project Details');
-    taskTitle.classList.add(Task.SUB_TITLE);
+   
     const taskPane = createElement(Task.PANE, Task.PANE);
 
     const addTaskButton = createButton(Task.CREATE_BUTTON,null,'button');
     addTaskButton.appendChild(createImage(Task.CREATE_ICON,createTaskIcon));
     addTaskButton.appendChild(createElement(Task.ADD_LABEL, Task.ADD_LABEL, 'Add Task'));
     
-    taskPane.appendChild(taskTitle);
+    //taskPane.appendChild(taskTitle);
     taskPane.appendChild(addTaskButton);
 
     addTaskButtonAction(addTaskButton,taskPane);
@@ -21,6 +20,11 @@ function createTaskPane() {
 }
 
 function refreshTaskPane(project){
+  
+  const taskPane = document.getElementsByClassName(Task.PANE)[0];
+  const innerValue = `Project ${project.name} details:`
+  taskPane.insertBefore(createElement(Task.PROJECT_INFO, Task.PROJECT_INFO, innerValue), taskPane.firstChild);
+
   console.log('taskPane.js project name:'+project.name);
   console.log('taskPane.js project id:'+project.id);
 }

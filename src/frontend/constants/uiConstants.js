@@ -9,7 +9,8 @@ export const Task ={
     PANE: 'taskPane',
     CREATE_BUTTON: 'createTaskButton',
     FORM_HIDE: 'createTaskFormHide',
-    DUE_DATE_ID: 'dueDate'
+    DUE_DATE_ID: 'dueDate',
+    PROJECT_INFO: 'projectInfo'
 
 }
 
