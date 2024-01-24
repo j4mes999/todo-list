@@ -3,6 +3,8 @@ import createTaskForm from './components/taskForm';
 import { createButton, createElement, createImage } from './components/htmlElement';
 import { Task } from './constants/uiConstants';
 
+let selectedProject = null;
+
 function createTaskPane() {
    
     const taskPane = createElement(Task.PANE, Task.PANE);
@@ -11,7 +13,6 @@ function createTaskPane() {
     addTaskButton.appendChild(createImage(Task.CREATE_ICON,createTaskIcon));
     addTaskButton.appendChild(createElement(Task.ADD_LABEL, Task.ADD_LABEL, 'Add Task'));
     
-    //taskPane.appendChild(taskTitle);
     taskPane.appendChild(addTaskButton);
 
     addTaskButtonAction(addTaskButton,taskPane);
@@ -22,11 +23,13 @@ function createTaskPane() {
 function refreshTaskPane(project){
   
   const taskPane = document.getElementsByClassName(Task.PANE)[0];
+  const projectInfo = document.getElementsByClassName(Task.PROJECT_INFO);
+  if(projectInfo.length > 0){
+    projectInfo[0].remove();
+  }
   const innerValue = `Project ${project.name} details:`
   taskPane.insertBefore(createElement(Task.PROJECT_INFO, Task.PROJECT_INFO, innerValue), taskPane.firstChild);
-
-  console.log('taskPane.js project name:'+project.name);
-  console.log('taskPane.js project id:'+project.id);
+  selectedProject = project; 
 }
 
 function addTaskButtonAction(addTaskButton, taskPane){
@@ -42,4 +45,4 @@ function addTaskButtonAction(addTaskButton, taskPane){
   });
 }
 
-export {createTaskPane, refreshTaskPane};
+export {createTaskPane, refreshTaskPane, selectedProject};

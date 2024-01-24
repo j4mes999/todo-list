@@ -25,9 +25,11 @@ function refreshView(project){
         projectList.appendChild(createProjectView(project));
         const projectPane = document.getElementsByClassName(Project.SUB_TITLE)[0];
         projectPane.insertAdjacentElement('afterend',projectList);
+        refreshTaskPane(project);
     }else{
         addProjectToListView(project);
     }
+    
 }
 
 function addProjectToListView(project){
@@ -47,4 +49,4 @@ function createProjectView(project){
     return projectItem;
 }
 
-export {addProjectToList, initializeProjectList};
+export {addProjectToList, initializeProjectList, projects};

@@ -1,5 +1,6 @@
 import {createElement, createOption, createInput, createButton} from './htmlElement';
 import { Task } from '../constants/uiConstants';
+import { selectedProject } from '../taskpane';
 
 function createTaskForm(){
   const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
@@ -50,7 +51,18 @@ function cancelButtonAction(cancelButton){
 }
 
 function createButtonAction(createButton){
+  createButton.addEventListener('click', () => {
+    const userInput = document.getElementsByClassName(Task.INPUT);
+    console.log('taskForm.js selected project name: '+selectedProject.name);
+    console.log('taskForm.js selected project id: '+selectedProject.id);
+    console.log('taskForm.js task title '+userInput[0].value);
+    console.log('taskForm.js task desc '+userInput[1].value);
+    const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
+    console.log('taskForm.js due date '+dueDate);
 
+
+  });
+  
 }
 
 export default createTaskForm;
