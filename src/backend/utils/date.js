@@ -1,7 +1,7 @@
 import { getUnixTime, format, parse, compareAsc, fromUnixTime } from "date-fns";
-const DATE_FORMAT = 'M/d/yyyy';
+const DATE_FORMAT = 'MM/dd/yyyy';
 
-//Pre: date is in format "M-d-yyyy"
+//Pre: date is in format "MM-dd-yyyy"
 function processDate(stringDate){
   const date = parse(stringDate,DATE_FORMAT, new Date());
   const formattedDate = format(date, DATE_FORMAT);
@@ -25,4 +25,10 @@ function getDateStringFromTimeStamp(timeStamp){
   return format(date,DATE_FORMAT);
 }
 
-export {processDate, isBeforeFromNow, getDateStringFromTimeStamp, DATE_FORMAT};
+function transformDateFormat(date){
+  //const formattedDate = format(date, DATE_FORMAT);
+  //return parse(formattedDate, DATE_FORMAT,new Date());
+  return format(date, DATE_FORMAT);
+}
+
+export {processDate, isBeforeFromNow, getDateStringFromTimeStamp,transformDateFormat, DATE_FORMAT};

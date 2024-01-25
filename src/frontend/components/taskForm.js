@@ -2,6 +2,7 @@ import {createElement, createOption, createInput, createButton} from './htmlElem
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
 import serviceCreateTask from '../../backend/service/taskService';
+import { transformDateFormat } from '../../backend/utils/date';
 
 function createTaskForm(){
   const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
@@ -43,7 +44,6 @@ function cancelButtonAction(cancelButton){
   cancelButton.addEventListener('click', () => {
     const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
     createTaskForm.classList.toggle(Task.FORM_HIDE);
-    
     const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
     addTaskButton.disabled = false;
 
@@ -55,13 +55,15 @@ function createButtonAction(createButton){
   createButton.addEventListener('click', () => {
     const userInput = document.getElementsByClassName(Task.INPUT);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
-    console.log('taskForm.js due date '+dueDate);
     const priority = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
-    serviceCreateTask(userInput[0].value,userInput[1].value,dueDate,priority.value,selectedProject.id);
-
-
+    const formattedDate = transformDateFormat(dueDate.replace(/-/g, '/'));
+    serviceCreateTask(userInput[0].value,userInput[1].value,formattedDate,priority.value,selectedProject.id);
+    drawTask();
   });
-  
+}
+
+function drawTask(){
+  //TODO draw the components in UI for task
 }
 
 export default createTaskForm;
