@@ -1,6 +1,7 @@
 import {createElement, createOption, createInput, createButton} from './htmlElement';
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
+import serviceCreateTask from '../../backend/service/taskService';
 
 function createTaskForm(){
   const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
@@ -30,7 +31,7 @@ function createTaskForm(){
 }
 
 function createOptionList() {
-  const prioritySelect = createElement('select', 'prioritySelect');
+  const prioritySelect = createElement('select', Task.PRIORITY_SELECT);
   prioritySelect.appendChild(createOption('optionFirst', 0, 'Select Priority'));
   prioritySelect.appendChild(createOption('option', 1, 'Low'));
   prioritySelect.appendChild(createOption('option', 2, 'Normal'));
@@ -53,12 +54,10 @@ function cancelButtonAction(cancelButton){
 function createButtonAction(createButton){
   createButton.addEventListener('click', () => {
     const userInput = document.getElementsByClassName(Task.INPUT);
-    console.log('taskForm.js selected project name: '+selectedProject.name);
-    console.log('taskForm.js selected project id: '+selectedProject.id);
-    console.log('taskForm.js task title '+userInput[0].value);
-    console.log('taskForm.js task desc '+userInput[1].value);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
     console.log('taskForm.js due date '+dueDate);
+    const priority = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
+    serviceCreateTask(userInput[0].value,userInput[1].value,dueDate,priority.value,selectedProject.id);
 
 
   });
