@@ -1,8 +1,12 @@
-import {createElement, createOption, createInput, createButton} from './htmlElement';
+import {createElement, createOption, createInput, createButton, createImage} from './htmlElement';
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
 import serviceCreateTask from '../../backend/service/taskService';
 import { transformDateFormat } from '../../backend/utils/date';
+import deleteIcon from '../media/delete.png';
+import editIcon from '../media/edit.png';
+import seeDetailsIcon from '../media/seeDetails.png';
+import todoIcon from '../media/todoIconBlack.png';
 
 function createTaskForm(){
   const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
@@ -25,7 +29,7 @@ function createTaskForm(){
   createTaskFormContainer.appendChild(buttonContainer);
 
   cancelButtonAction(cancelButtonElement);
-  createButtonAction(createButtonElement);
+  createButtonAction(createButtonElement,createTaskFormContainer);
 
   return createTaskFormContainer;
 
@@ -51,18 +55,36 @@ function cancelButtonAction(cancelButton){
   });
 }
 
-function createButtonAction(createButton){
+function createButtonAction(createButton, taskForm){
   createButton.addEventListener('click', () => {
     const userInput = document.getElementsByClassName(Task.INPUT);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
     const priority = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
     const formattedDate = transformDateFormat(dueDate.replace(/-/g, '/'));
-    serviceCreateTask(userInput[0].value,userInput[1].value,formattedDate,priority.value,selectedProject.id);
-    drawTask();
+    const task = serviceCreateTask(userInput[0].value,userInput[1].value,formattedDate,priority.value,selectedProject.id);
+    drawTask(task,taskForm);
   });
 }
 
-function drawTask(){
+function drawTask(task, taskForm){
+  
+  const taskInfo = createElement('span',Task.INFO,task.title);
+  const leftContainer = createElement(Task.LEFT_CONTAINER,Task.LEFT_CONTAINER);
+  leftContainer.appendChild(createImage(Task.INFO_ICON,todoIcon));
+  leftContainer.appendChild(taskInfo);
+  
+  const rightContainer = createElement(Task.RIGHT_CONTAINER,Task.RIGHT_CONTAINER);
+  rightContainer.appendChild(createImage(Task.INFO_ICON,seeDetailsIcon));
+  rightContainer.appendChild(createImage(Task.INFO_ICON,editIcon));
+  rightContainer.appendChild(createImage(Task.INFO_ICON,deleteIcon));
+
+  const taskInfoContainer = createElement(Task.INFO_CONTAINER,Task.INFO_CONTAINER);
+  taskInfoContainer.appendChild(leftContainer);
+  taskInfoContainer.appendChild(rightContainer);
+
+  const taskPane = document.getElementsByClassName(Task.PANE)[0];
+  taskPane.insertBefore(taskInfoContainer,taskForm);
+
   //TODO draw the components in UI for task
 }
 

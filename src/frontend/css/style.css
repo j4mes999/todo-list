@@ -65,6 +65,11 @@
     margin: 5px;
   }
 
+  .infoIcon{
+    width: 20px;
+    margin: 5px;
+  }
+
   .content{
     display: flex;
     flex-direction: column;
@@ -81,7 +86,10 @@
   .projectButtonContainer,
   .inputContainer,
   .projectItem,
-  .taskFormButtonContainer{
+  .taskFormButtonContainer,
+  .infoContainer,
+  .leftContainer,
+  .rightContainer{
     display: flex;
     flex-direction: row;
   }

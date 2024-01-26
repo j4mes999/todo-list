@@ -11,7 +11,12 @@ export const Task ={
     FORM_HIDE: 'createTaskFormHide',
     DUE_DATE_ID: 'dueDate',
     PROJECT_INFO: 'projectInfo',
-    PRIORITY_SELECT: 'prioritySelect'
+    PRIORITY_SELECT: 'prioritySelect',
+    INFO: 'taskInfo',
+    INFO_CONTAINER: 'infoContainer',
+    INFO_ICON: 'infoIcon',
+    LEFT_CONTAINER : 'leftContainer',
+    RIGHT_CONTAINER : 'rightContainer'
 
 }
 
