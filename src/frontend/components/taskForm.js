@@ -62,11 +62,14 @@ function createButtonAction(createButton, taskForm){
     const priority = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
     const formattedDate = transformDateFormat(dueDate.replace(/-/g, '/'));
     const task = serviceCreateTask(userInput[0].value,userInput[1].value,formattedDate,priority.value,selectedProject.id);
-    drawTask(task,taskForm);
+    selectedProject.addTask(task);
+    
+    const taskPane = document.getElementsByClassName(Task.PANE)[0];
+    taskPane.insertBefore(drawTask(task), taskForm);
   });
 }
 
-function drawTask(task, taskForm){
+function drawTask(task){
   
   const taskInfo = createElement('span',Task.INFO,task.title);
   const leftContainer = createElement(Task.LEFT_CONTAINER,Task.LEFT_CONTAINER);
@@ -82,10 +85,8 @@ function drawTask(task, taskForm){
   taskInfoContainer.appendChild(leftContainer);
   taskInfoContainer.appendChild(rightContainer);
 
-  const taskPane = document.getElementsByClassName(Task.PANE)[0];
-  taskPane.insertBefore(taskInfoContainer,taskForm);
-
-  //TODO draw the components in UI for task
+  return taskInfoContainer;
+  
 }
 
-export default createTaskForm;
+export {createTaskForm, drawTask};

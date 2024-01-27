@@ -1,5 +1,5 @@
 import createTaskIcon from './media/plusSignWhite.svg'
-import createTaskForm from './components/taskForm';
+import {createTaskForm, drawTask} from './components/taskForm';
 import { createButton, createElement, createImage } from './components/htmlElement';
 import { Task } from './constants/uiConstants';
 
@@ -30,6 +30,26 @@ function refreshTaskPane(project){
   const innerValue = `Project ${project.name} details:`
   taskPane.insertBefore(createElement(Task.PROJECT_INFO, Task.PROJECT_INFO, innerValue), taskPane.firstChild);
   selectedProject = project; 
+  console.log('taskPane.js project name: '+selectedProject.name);
+  console.log('taskPane.js project number of tasks '+selectedProject.getNumberOfTasks());
+  removePreviousTasks(taskPane);
+  drawTasksFromProject(project);
+}
+
+function removePreviousTasks(taskPane){
+  const tasks = document.getElementsByClassName(Task.INFO_CONTAINER);
+  if( tasks.length > 0){
+    //TODO remove each element using parent.removeChild(child);
+    //tasks.forEach()
+  }
+}
+
+function drawTasksFromProject(project){
+  const taskPane = document.getElementsByClassName(Task.FORM)[0];
+  project.getTasks().forEach(task => {
+    console.log("taskPane.js task info"+task.title);
+  });
+
 }
 
 function addTaskButtonAction(addTaskButton, taskPane){
