@@ -30,8 +30,6 @@ function refreshTaskPane(project){
   const innerValue = `Project ${project.name} details:`
   taskPane.insertBefore(createElement(Task.PROJECT_INFO, Task.PROJECT_INFO, innerValue), taskPane.firstChild);
   selectedProject = project; 
-  console.log('taskPane.js project name: '+selectedProject.name);
-  console.log('taskPane.js project number of tasks '+selectedProject.getNumberOfTasks());
   removePreviousTasks(taskPane);
   drawTasksFromProject(project);
 }
@@ -40,14 +38,17 @@ function removePreviousTasks(taskPane){
   const tasks = document.getElementsByClassName(Task.INFO_CONTAINER);
   if( tasks.length > 0){
     //TODO remove each element using parent.removeChild(child);
-    //tasks.forEach()
+    Array.from(tasks).forEach((task) => {
+      taskPane.removeChild(task);
+    });
   }
 }
 
 function drawTasksFromProject(project){
-  const taskPane = document.getElementsByClassName(Task.FORM)[0];
+  const taskPane = document.getElementsByClassName(Task.PANE)[0];
+  const taskForm = document.getElementsByClassName(Task.FORM)[0];
   project.getTasks().forEach(task => {
-    console.log("taskPane.js task info"+task.title);
+    taskPane.insertBefore(drawTask(task),taskForm);
   });
 
 }

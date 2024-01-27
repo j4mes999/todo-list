@@ -48,8 +48,7 @@ function cancelButtonAction(cancelButton){
   cancelButton.addEventListener('click', () => {
     const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
     createTaskForm.classList.toggle(Task.FORM_HIDE);
-    const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
-    addTaskButton.disabled = false;
+    enableAddTaskButton();
 
     document.getElementById(Task.DUE_DATE_ID).type = '';
   });
@@ -66,6 +65,10 @@ function createButtonAction(createButton, taskForm){
     
     const taskPane = document.getElementsByClassName(Task.PANE)[0];
     taskPane.insertBefore(drawTask(task), taskForm);
+
+    const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
+    createTaskForm.classList.toggle(Task.FORM_HIDE);
+    enableAddTaskButton();
   });
 }
 
@@ -87,6 +90,11 @@ function drawTask(task){
 
   return taskInfoContainer;
   
+}
+
+function enableAddTaskButton(){
+  const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
+  addTaskButton.disabled = false;
 }
 
 export {createTaskForm, drawTask};
