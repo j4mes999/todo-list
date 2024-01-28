@@ -8,6 +8,10 @@ import editIcon from '../media/edit.png';
 import seeDetailsIcon from '../media/seeDetails.png';
 import todoIcon from '../media/todoIconBlack.png';
 
+const PLACE_HOLDER_TITLE = 'Enter Title';
+const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
+const PLACE_HOLDER_DUE_DATE = 'Due Date';
+
 function createTaskForm(){
   const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
   const prioritySelect = createOptionList();
@@ -17,9 +21,9 @@ function createTaskForm(){
   buttonContainer.appendChild(createButtonElement);
   buttonContainer.appendChild(cancelButtonElement);
 
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Title'));
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, 'Enter Description'));
-  const dueDate = createInput(Task.INPUT, 'Due Date');
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE ));
+  createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
+  const dueDate = createInput(Task.INPUT, PLACE_HOLDER_DUE_DATE);
   dueDate.onfocus = function(){
     this.type = 'date';
   };
@@ -37,7 +41,10 @@ function createTaskForm(){
 
 function createOptionList() {
   const prioritySelect = createElement('select', Task.PRIORITY_SELECT);
-  prioritySelect.appendChild(createOption('optionFirst', 0, 'Select Priority'));
+  const defaultOption = createOption('optionFirst', 0, 'Select Priority');
+  defaultOption.disabled = true;
+  defaultOption.hidden = true;
+  prioritySelect.appendChild(defaultOption);
   prioritySelect.appendChild(createOption('option', 1, 'Low'));
   prioritySelect.appendChild(createOption('option', 2, 'Normal'));
   prioritySelect.appendChild(createOption('option', 3, 'High'));
@@ -92,9 +99,26 @@ function drawTask(task){
   
 }
 
+function resetTaskFormFields(){
+  if( typeof document.getElementsByClassName(Task.FORM) !== "undefined"){
+    let inputFields = document.getElementsByClassName(Task.INPUT);
+    resetInputValue(inputFields[0], PLACE_HOLDER_TITLE);
+    resetInputValue(inputFields[1], PLACE_HOLDER_DESCRIPTION);
+    resetInputValue(inputFields[2], PLACE_HOLDER_DUE_DATE);
+    inputFields[2].type = '';
+    const selectElement = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
+    selectElement.value = selectElement.firstChild.value;
+  }
+}
+
+function resetInputValue(inputField, placeHolderValue){
+  inputField.value = '';
+  inputField.placeholder = placeHolderValue;
+}
+
 function enableAddTaskButton(){
   const addTaskButton = document.getElementsByClassName(Task.CREATE_BUTTON)[0];
   addTaskButton.disabled = false;
 }
 
-export {createTaskForm, drawTask};
+export {createTaskForm, drawTask, resetTaskFormFields};

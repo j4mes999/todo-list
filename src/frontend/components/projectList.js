@@ -3,6 +3,7 @@ import serviceCreateProject from '../../backend/service/projectService';
 import { refreshTaskPane } from '../taskpane';
 import { Project } from '../constants/uiConstants';
 import { createElement, createImage } from './htmlElement';
+import { retrieveDataFromStorage } from '../../backend/persistence/storageManager';
 
 let projects = [];
 
@@ -12,9 +13,19 @@ function addProjectToList(project){
 }
 
 function initializeProjectList(){
-  const defaultProject = serviceCreateProject('default');
-  projects.push(defaultProject);
-  refreshView(defaultProject);
+  const projectsFromStorage = retrieveDataFromStorage();
+  if(projectsFromStorage === null || projectsFromStorage.length === 0){
+    const defaultProject = serviceCreateProject('default');
+    projects.push(defaultProject);
+    refreshView(defaultProject);
+  }else{
+    projectsFromStorage.forEach((project) => {
+        refreshView(project);
+    });
+    projects = projectsFromStorage;
+  }
+  
+  
 }
 
 function refreshView(project){
