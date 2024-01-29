@@ -16,7 +16,8 @@ export const Task ={
     INFO_CONTAINER: 'infoContainer',
     INFO_ICON: 'infoIcon',
     LEFT_CONTAINER : 'leftContainer',
-    RIGHT_CONTAINER : 'rightContainer'
+    RIGHT_CONTAINER : 'rightContainer',
+    DELETE_BUTTON: 'deleteInfoTask'
 
 }
 

@@ -87,16 +87,29 @@ function drawTask(task){
   leftContainer.appendChild(taskInfo);
   
   const rightContainer = createElement(Task.RIGHT_CONTAINER,Task.RIGHT_CONTAINER);
+  const deleteButton = createButton(Task.DELETE_BUTTON, null,'button');
+  deleteButton.value = task.id;
+  deleteButton.appendChild(createImage(Task.INFO_ICON,deleteIcon))
   rightContainer.appendChild(createImage(Task.INFO_ICON,seeDetailsIcon));
   rightContainer.appendChild(createImage(Task.INFO_ICON,editIcon));
-  rightContainer.appendChild(createImage(Task.INFO_ICON,deleteIcon));
+  rightContainer.appendChild(deleteButton);
 
   const taskInfoContainer = createElement(Task.INFO_CONTAINER,Task.INFO_CONTAINER);
   taskInfoContainer.appendChild(leftContainer);
   taskInfoContainer.appendChild(rightContainer);
 
+  deleteButton.addEventListener('click', () => {
+    //TODO check how to get info from the button, the taskID is already in the button when created
+    console.log('taskForm.js delete task was clicked event data: ');
+    deleteTaskAction();
+  });
+
   return taskInfoContainer;
   
+}
+
+function deleteTaskAction(){
+  console.log('taskForm.js project selected: '+selectedProject.name);
 }
 
 function resetTaskFormFields(){

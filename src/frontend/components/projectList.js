@@ -1,5 +1,5 @@
 import folderIconImg from '../media/folderIconWhite.png'
-import serviceCreateProject from '../../backend/service/projectService';
+import {serviceCreateProject} from '../../backend/service/projectService';
 import { refreshTaskPane } from '../taskpane';
 import { Project } from '../constants/uiConstants';
 import { createElement, createImage } from './htmlElement';

@@ -1,6 +1,6 @@
 import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
-import serviceCreateProject from '../backend/service/projectService';
+import {serviceCreateProject} from '../backend/service/projectService';
 import { addProjectToList } from './components/projectList';
 import { createButton, createElement, createImage, createInput } from './components/htmlElement';
 import { Project } from './constants/uiConstants'; 

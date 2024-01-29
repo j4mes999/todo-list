@@ -1,5 +1,5 @@
 import createProject from "../project";
-import {saveProject} from "../persistence/storageManager";
+import {saveProject, removeTask} from "../persistence/storageManager";
 
 function serviceCreateProject(name){
   const project = createProject(name);
@@ -8,4 +8,9 @@ function serviceCreateProject(name){
   return project;
 }
 
-export default serviceCreateProject;
+function deleteTask(project, taskId){
+  project.removeTask(taskId);
+  removeTask(taskId);
+}
+
+export {serviceCreateProject, deleteTask};

@@ -139,7 +139,8 @@
     margin: 5px;
   }
 
-  .createProjectButton{
+  .createProjectButton,
+  .deleteInfoTask{
     background: transparent;
     cursor: pointer;
     border: solid 2px transparent;
