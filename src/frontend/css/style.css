@@ -179,6 +179,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin: 10px;
+    transition: all 0.5s;
   }
 
   .createProjectForm{
@@ -248,6 +249,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin: 10px;
+    transition: all 0.5s;
   }
 
   .createTaskFormHide{
@@ -281,6 +283,70 @@
   .createTaskButton:hover{
     background: rgb(184, 183, 178);    
   }
+
+
+
+  /* Effect when a button is pressed: */
+  .createTaskButton:active,
+  .createProjectButton:active
+  {
+    transform: scale(0.98); 
+  }
+
+  /* Effect when hovering an accept or cancel button */
+  .projectFormButton:hover .spanButton{
+    padding-right: 25px;
+  }
+
+  .projectFormButton:hover .spanButton:after{
+    opacity: 1;
+    right: 0;
+  }
+
+
+  .projectFormButton .spanButton:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .projectFormButton .spanButton {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .taskFormButton:hover .spanButton{
+    padding-right: 25px;
+  }
+
+  .taskFormButton:hover .spanButton:after{
+    opacity: 1;
+    right: 0;
+  }
+
+
+  .taskFormButton .spanButton:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .taskFormButton .spanButton {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  /* end Effect when hovering an accept or cancel button */
 
   /* Responsive design*/
   @media (max-width: 800px) {

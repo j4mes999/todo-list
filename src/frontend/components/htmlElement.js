@@ -31,7 +31,10 @@ function createInput(className, placeHolder, type){
 function createButton(className, innerValue, type){
     const button = document.createElement('button');
     button.classList.add(className);
-    button.innerHTML = innerValue;
+    if ( innerValue != null){
+      button.appendChild(createElement('span','spanButton',innerValue));
+    }
+    //button.innerHTML = innerValue;
     if (type != null){
       button.type = type;
     }
