@@ -7,6 +7,7 @@ import deleteIcon from '../media/delete.png';
 import editIcon from '../media/edit.png';
 import seeDetailsIcon from '../media/seeDetails.png';
 import todoIcon from '../media/todoIconBlack.png';
+import { deleteTask } from '../../backend/service/projectService';
 
 const PLACE_HOLDER_TITLE = 'Enter Title';
 const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
@@ -95,21 +96,22 @@ function drawTask(task){
   rightContainer.appendChild(deleteButton);
 
   const taskInfoContainer = createElement(Task.INFO_CONTAINER,Task.INFO_CONTAINER);
+  taskInfoContainer.id = task.id;
   taskInfoContainer.appendChild(leftContainer);
   taskInfoContainer.appendChild(rightContainer);
 
-  deleteButton.addEventListener('click', () => {
-    //TODO check how to get info from the button, the taskID is already in the button when created
-    console.log('taskForm.js delete task was clicked event data: ');
-    deleteTaskAction();
+  deleteButton.addEventListener('click', function(e) {
+    deleteTaskAction(this.value);
   });
 
   return taskInfoContainer;
   
 }
 
-function deleteTaskAction(){
-  console.log('taskForm.js project selected: '+selectedProject.name);
+function deleteTaskAction(taskID){
+  deleteTask(selectedProject,taskID);
+  document.getElementById(taskID).remove();
+
 }
 
 function resetTaskFormFields(){
