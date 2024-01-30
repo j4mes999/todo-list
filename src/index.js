@@ -17,7 +17,6 @@ window.removeTask = removeTask;
 // const task5 = createTask("Call mom", "Tell her about christmas evening",'',"2");
 // let tasks = [];
 // tasks.push(task1);
-// tasks.push(task2);
 /*
 Test to initialize the app:
 const project1 = createProject('test1', 'just for testing');
