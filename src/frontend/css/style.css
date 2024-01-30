@@ -73,7 +73,6 @@
   .content{
     display: flex;
     flex-direction: column;
-    height: 100vh;
   }
 
   .body{
@@ -96,6 +95,7 @@
 
   .bodyPane{
     height: 100%;
+    min-height: 100vh;
   }
 
   .addTaskLabel{
