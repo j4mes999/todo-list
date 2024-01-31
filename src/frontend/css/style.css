@@ -273,10 +273,6 @@
     margin: 10px 20px;
   }
 
-  /* input[type="date"]{
-    background-color: #ffce00;
-  } */
-
   /* Hovering selectors*/
   .projectItem:hover,
   .createProjectButton:hover,
