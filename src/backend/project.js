@@ -28,13 +28,17 @@ function createProject(name,description,projectId){
         }
     }
 
+    const getTask = (taskId) => {
+        return tasks.find(task => task.id === taskId);
+    }
+
     const getTasks = () => {
         return tasks;
     }
 
     
 
-    return {addTask, getNumberOfTasks, removeTask, getTasks, name, description, id};
+    return {addTask, getNumberOfTasks, removeTask, getTasks, getTask, name, description, id};
 }
 
 export default createProject;

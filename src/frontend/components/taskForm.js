@@ -90,9 +90,15 @@ function drawTask(task){
   const rightContainer = createElement(Task.RIGHT_CONTAINER,Task.RIGHT_CONTAINER);
   const deleteButton = createButton(Task.DELETE_BUTTON, null,'button');
   deleteButton.value = task.id;
+  const viewDetailsButton = createButton(Task.VIEW_INFO,null, 'button');
+  viewDetailsButton.value = task.id;
+  const editDetailsButton = createButton(Task.EDIT_INFO,null, 'button');
+  editDetailsButton.value = task.id;
+  editDetailsButton.appendChild(createImage(Task.INFO_ICON,editIcon));
   deleteButton.appendChild(createImage(Task.INFO_ICON,deleteIcon))
-  rightContainer.appendChild(createImage(Task.INFO_ICON,seeDetailsIcon));
-  rightContainer.appendChild(createImage(Task.INFO_ICON,editIcon));
+  viewDetailsButton.appendChild(createImage(Task.INFO_ICON,seeDetailsIcon));
+  rightContainer.appendChild(viewDetailsButton);
+  rightContainer.appendChild(editDetailsButton);
   rightContainer.appendChild(deleteButton);
 
   const taskInfoContainer = createElement(Task.INFO_CONTAINER,Task.INFO_CONTAINER);
@@ -104,6 +110,10 @@ function drawTask(task){
     deleteTaskAction(this.value);
   });
 
+  viewDetailsButton.addEventListener('click', function(e){
+    viewTaskAction(this.value);
+  });
+
   return taskInfoContainer;
   
 }
@@ -111,7 +121,32 @@ function drawTask(task){
 function deleteTaskAction(taskID){
   deleteTask(selectedProject,taskID);
   document.getElementById(taskID).remove();
+}
 
+function viewTaskAction(taskId){
+  const viewForm = createElement(Task.VIEW_FORM,Task.VIEW_FORM);
+  const task = selectedProject.getTask(taskId);
+  const title = createElement('span', Task.INPUT,task.title);
+  const description = createElement('span', Task.INPUT,task.description);
+  const dueDate = createElement('span', Task.INPUT,task.dueDate);
+  const priority = createElement('span', Task.INPUT,task.priority);
+
+  viewForm.appendChild(title);
+  viewForm.appendChild(description);
+  viewForm.appendChild(dueDate);
+  viewForm.appendChild(priority);
+
+  const taskPane = document.getElementsByClassName(Task.PANE)[0];
+  //taskPane.appendChild(viewForm);
+
+  const uiContainer = getParentElement(taskId);
+  uiContainer.insertAdjacentElement('afterend', viewForm);
+}
+
+function getParentElement(taskId){
+  const element = document.getElementById(taskId);
+  return element != null ? 
+         element : document.getElementsByClassName(Task.INFO_CONTAINER)[0];
 }
 
 function resetTaskFormFields(){

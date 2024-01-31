@@ -17,8 +17,11 @@ export const Task ={
     INFO_ICON: 'infoIcon',
     LEFT_CONTAINER : 'leftContainer',
     RIGHT_CONTAINER : 'rightContainer',
-    DELETE_BUTTON: 'deleteInfoTask'
-
+    DELETE_BUTTON: 'deleteInfoTask',
+    VIEW_INFO: 'viewInfoTask',
+    EDIT_INFO: 'editInfoTask',
+    VIEW_FORM: 'viewTaskForm',
+    EDIT_FORM: 'editTaskForm'
 }
 
 export const Project = {

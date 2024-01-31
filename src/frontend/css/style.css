@@ -140,7 +140,9 @@
   }
 
   .createProjectButton,
-  .deleteInfoTask{
+  .deleteInfoTask,
+  .viewInfoTask,
+  .editInfoTask{
     background: transparent;
     cursor: pointer;
     border: solid 2px transparent;
@@ -213,7 +215,9 @@
     cursor: pointer;
   }
 
-  .createTaskForm{
+  .createTaskForm,
+  .editTaskForm,
+  .viewTaskForm {
     display: flex;
     flex-direction: column;
     max-height: 400px;
