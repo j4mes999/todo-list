@@ -59,7 +59,7 @@ function addTaskButtonAction(addTaskButton, taskPane) {
   addTaskButton.addEventListener('click', () => {
     const taskForm = document.getElementsByClassName(Task.FORM);
     if (taskForm.length == 0) {
-      taskPane.insertBefore(createTaskForm(), addTaskButton);
+      taskPane.insertBefore(createTaskForm(null,Task.FORM, Task.FORM_HIDE), addTaskButton);
     } else {
       taskForm[0].classList.toggle(Task.FORM_HIDE);
       resetTaskFormFields();

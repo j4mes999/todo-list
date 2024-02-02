@@ -13,16 +13,21 @@ const PLACE_HOLDER_TITLE = 'Enter Title';
 const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
 const PLACE_HOLDER_DUE_DATE = 'Due Date';
 
-function createTaskForm() {
-  const createTaskFormContainer = createElement(Task.FORM, Task.FORM);
+function createTaskForm(task, formName, formNameHide) {
+  const createTaskFormContainer = createElement(formName, formName);
   const prioritySelect = createOptionList();
-  const createButtonElement = createButton(Task.BUTTON_FORM, 'Create', 'submit');
+  let createButtonElement;
+  if(task === null){
+    createButtonElement = createButton(Task.BUTTON_FORM, 'Create', 'submit');
+    createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE));
+  }else{
+    createButtonElement = createButton(Task.BUTTON_FORM, 'Edit', 'submit');
+  }
   const cancelButtonElement = createButton(Task.BUTTON_FORM, 'Cancel', null);
   const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
   buttonContainer.appendChild(createButtonElement);
   buttonContainer.appendChild(cancelButtonElement);
 
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE));
   createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
   const dueDate = createInput(Task.INPUT, PLACE_HOLDER_DUE_DATE);
   dueDate.onfocus = function () {
@@ -33,7 +38,7 @@ function createTaskForm() {
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
-  cancelButtonAction(cancelButtonElement);
+  cancelButtonAction(cancelButtonElement,formName, formNameHide);
   createButtonAction(createButtonElement, createTaskFormContainer);
 
   return createTaskFormContainer;
@@ -52,17 +57,17 @@ function createOptionList() {
   return prioritySelect;
 }
 
-function cancelButtonAction(cancelButton) {
+function cancelButtonAction(cancelButton,formName, formNameHide) {
   cancelButton.addEventListener('click', () => {
-    const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
-    createTaskForm.classList.toggle(Task.FORM_HIDE);
+    const createTaskForm = document.getElementsByClassName(formName)[0];
+    createTaskForm.classList.toggle(Task.formNameHide);
     enableAddTaskButton();
 
     document.getElementById(Task.DUE_DATE_ID).type = '';
   });
 }
 
-function createButtonAction(createButton, taskForm) {
+function createButtonAction(createButton) {
   createButton.addEventListener('click', () => {
     const userInput = document.getElementsByClassName(Task.INPUT);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
@@ -106,19 +111,37 @@ function drawTask(task) {
   taskInfoContainer.appendChild(leftContainer);
   taskInfoContainer.appendChild(rightContainer);
 
-  deleteButton.addEventListener('click', function (e) {
-    deleteTaskAction(this.value);
-  });
-
+  deleteTaskAction(deleteButton);
   viewTaskAction(viewDetailsButton);
+  editDetailsAction(editDetailsButton);
 
   return taskInfoContainer;
 
 }
 
-function deleteTaskAction(taskID) {
-  deleteTask(selectedProject, taskID);
-  document.getElementById(taskID).remove();
+function editDetailsAction(editButton){
+  editButton.addEventListener('click',function(e){
+    const taskId = this.value;
+    disableAllViewButtons(true);
+  
+    const task = selectedProject.getTask(taskId);
+    const uiContainer = getParentElement(taskId);
+    uiContainer.insertAdjacentElement('afterend', createTaskForm(task,Task.EDIT_FORM, Task.EDIT_FORM_HIDE));
+
+  });
+}
+
+function deleteTaskAction(deleteButton) {
+  deleteButton.addEventListener('click', function (e) {
+    const taskId = this.value;
+    deleteTask(selectedProject, taskId);
+    document.getElementById(taskId).remove();
+    const viewTaskForm = document.getElementsByClassName(Task.VIEW_FORM);
+    if (viewTaskForm.length > 0){
+      viewTaskForm[0].remove();
+      disableAllViewButtons(false);
+    }
+  });
 }
 
 function viewTaskAction(viewDetailsButton) {
@@ -144,10 +167,18 @@ function viewTaskAction(viewDetailsButton) {
     const uiContainer = getParentElement(taskId);
     uiContainer.insertAdjacentElement('afterend', viewForm);
 
-    closeButton.addEventListener('click', () => {
-
-    })
+    closeButtonAction(closeButton);
+ 
   });
+
+}
+
+function closeButtonAction(closeButton){
+  closeButton.addEventListener('click', () => {
+    const viewTaskForm = document.getElementsByClassName(Task.VIEW_FORM)[0]
+      viewTaskForm.remove();
+      disableAllViewButtons(false);
+  })
 
 }
 

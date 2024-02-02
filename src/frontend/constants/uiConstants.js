@@ -21,7 +21,8 @@ export const Task ={
     VIEW_INFO: 'viewInfoTask',
     EDIT_INFO: 'editInfoTask',
     VIEW_FORM: 'viewTaskForm',
-    EDIT_FORM: 'editTaskForm'
+    EDIT_FORM: 'editTaskForm',
+    EDIT_FORM_HIDE: 'editTaskFormHide'
 }
 
 export const Project = {

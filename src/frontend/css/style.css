@@ -256,7 +256,8 @@
     transition: all 0.5s;
   }
 
-  .createTaskFormHide{
+  .createTaskFormHide,
+  .editTaskFormHide{
     display: none;
   }
 
