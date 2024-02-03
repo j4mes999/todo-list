@@ -1,5 +1,5 @@
 import createTaskIcon from './media/plusSignWhite.svg'
-import { createTaskForm, drawTask, resetTaskFormFields } from './components/taskForm';
+import { createTaskForm, disableAllButtons, drawTask, resetTaskFormFields } from './components/taskForm';
 import { createButton, createElement, createImage } from './components/htmlElement';
 import { Task } from './constants/uiConstants';
 
@@ -66,6 +66,7 @@ function addTaskButtonAction(addTaskButton, taskPane) {
     }
 
     addTaskButton.disabled = 'true';
+    disableAllButtons(true);
   });
 }
 

@@ -59,11 +59,15 @@ function createOptionList() {
 
 function cancelButtonAction(cancelButton,formName, formNameHide) {
   cancelButton.addEventListener('click', () => {
-    const createTaskForm = document.getElementsByClassName(formName)[0];
-    createTaskForm.classList.toggle(Task.formNameHide);
-    enableAddTaskButton();
-
-    document.getElementById(Task.DUE_DATE_ID).type = '';
+    if(formName === Task.EDIT_FORM){
+      document.getElementsByClassName(Task.EDIT_FORM)[0].remove();
+    }else{
+      const createTaskForm = document.getElementsByClassName(formName)[0];
+      createTaskForm.classList.toggle(formNameHide);
+      enableAddTaskButton();
+      document.getElementById(Task.DUE_DATE_ID).type = '';
+    }    
+    disableAllButtons(false);
   });
 }
 
@@ -122,7 +126,7 @@ function drawTask(task) {
 function editDetailsAction(editButton){
   editButton.addEventListener('click',function(e){
     const taskId = this.value;
-    disableAllViewButtons(true);
+    disableAllButtons(true);
   
     const task = selectedProject.getTask(taskId);
     const uiContainer = getParentElement(taskId);
@@ -139,14 +143,14 @@ function deleteTaskAction(deleteButton) {
     const viewTaskForm = document.getElementsByClassName(Task.VIEW_FORM);
     if (viewTaskForm.length > 0){
       viewTaskForm[0].remove();
-      disableAllViewButtons(false);
+      disableAllButtons(false);
     }
   });
 }
 
 function viewTaskAction(viewDetailsButton) {
   viewDetailsButton.addEventListener('click', function (e) {
-    disableAllViewButtons(true);
+    disableAllButtons(true);
     const taskId = this.value;
     const viewForm = createElement(Task.VIEW_FORM, Task.VIEW_FORM);
     const task = selectedProject.getTask(taskId);
@@ -167,24 +171,29 @@ function viewTaskAction(viewDetailsButton) {
     const uiContainer = getParentElement(taskId);
     uiContainer.insertAdjacentElement('afterend', viewForm);
 
-    closeButtonAction(closeButton);
+    closeButtonAction(closeButton, Task.VIEW_FORM);
  
   });
 
 }
 
-function closeButtonAction(closeButton){
+function closeButtonAction(closeButton,classNameModule){
   closeButton.addEventListener('click', () => {
-    const viewTaskForm = document.getElementsByClassName(Task.VIEW_FORM)[0]
-      viewTaskForm.remove();
-      disableAllViewButtons(false);
+    const viewTaskForm = document.getElementsByClassName(classNameModule)[0];
+    viewTaskForm.remove();
+    disableAllButtons(false);
   })
 
 }
 
-function disableAllViewButtons(flag){
-  const buttons = document.getElementsByClassName(Task.VIEW_INFO);
-  for(let button of buttons){
+function disableAllButtons(flag){
+  disableAllClassButtons(flag, Task.VIEW_INFO);
+  disableAllClassButtons(flag, Task.EDIT_INFO);
+}
+
+function disableAllClassButtons(flag,className) {
+  const buttons = document.getElementsByClassName(className);
+  for (let button of buttons) {
     button.disabled = flag;
   }
 }
@@ -217,4 +226,4 @@ function enableAddTaskButton() {
   addTaskButton.disabled = false;
 }
 
-export { createTaskForm, drawTask, resetTaskFormFields };
+export { createTaskForm, drawTask, resetTaskFormFields, disableAllButtons };
