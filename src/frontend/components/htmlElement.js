@@ -28,13 +28,21 @@ function createInput(className, placeHolder, type){
   return input
 }
 
+function createInputForEdit(className, innerValue){
+  const input = document.createElement('input');
+  input.classList.add(className);
+  input.value = innerValue;
+
+  return input
+}
+
 function createButton(className, innerValue, type){
     const button = document.createElement('button');
     button.classList.add(className);
     if ( innerValue != null){
       button.appendChild(createElement('span','spanButton',innerValue));
     }
-    //button.innerHTML = innerValue;
+    
     if (type != null){
       button.type = type;
     }
@@ -50,4 +58,4 @@ function createImage(className, imageFile){
     return image;
 }
 
-export {createElement, createOption, createInput, createButton, createImage};
+export {createElement, createOption, createInput, createButton, createImage, createInputForEdit};

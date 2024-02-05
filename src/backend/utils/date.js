@@ -26,8 +26,6 @@ function getDateStringFromTimeStamp(timeStamp){
 }
 
 function transformDateFormat(date){
-  //const formattedDate = format(date, DATE_FORMAT);
-  //return parse(formattedDate, DATE_FORMAT,new Date());
   return format(date, DATE_FORMAT);
 }
 

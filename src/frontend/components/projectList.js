@@ -24,8 +24,6 @@ function initializeProjectList(){
     });
     projects = projectsFromStorage;
   }
-  
-  
 }
 
 function refreshView(project){

@@ -3,12 +3,14 @@ import createProject from "./backend/project";
 import { saveProject, saveTask, retrieveDataFromStorage, removeTask } from "./backend/persistence/storageManager";
 import loadWebsite from "./frontend/website";
 import { initializeProjectList } from "./frontend/components/projectList";
+import { getDateStringFromTimeStamp } from "./backend/utils/date";
 
 window.createTask = createTask;
 window.createProject = createProject;
 window.saveProject = saveProject;
 window.saveTask = saveTask;
 window.removeTask = removeTask;
+window.getDateStringFromTimeStamp = getDateStringFromTimeStamp;
 
 // const task1 = createTask("Do the dishes", "Wash pots, dishes and cutterly",'12/27/2023',"1");
 // const task2 = createTask("Vaccum", "Sofa and bed",'01/30/2024',"2");

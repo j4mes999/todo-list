@@ -1,8 +1,8 @@
-import { createElement, createOption, createInput, createButton, createImage } from './htmlElement';
+import { createElement, createOption, createInput, createButton, createImage, createInputForEdit } from './htmlElement';
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
 import serviceCreateTask from '../../backend/service/taskService';
-import { transformDateFormat } from '../../backend/utils/date';
+import { transformDateFormat, getDateStringFromTimeStamp } from '../../backend/utils/date';
 import deleteIcon from '../media/delete.png';
 import editIcon from '../media/edit.png';
 import seeDetailsIcon from '../media/seeDetails.png';
@@ -20,21 +20,29 @@ function createTaskForm(task, formName, formNameHide) {
   if(task === null){
     createButtonElement = createButton(Task.BUTTON_FORM, 'Create', 'submit');
     createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE));
+    createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
+    const dueDate = createInput(Task.INPUT, PLACE_HOLDER_DUE_DATE);
+    dueDate.onfocus = function () {
+      this.type = 'date';
+    };
+    dueDate.id = Task.DUE_DATE_ID;
+    createTaskFormContainer.appendChild(dueDate);
   }else{
     createButtonElement = createButton(Task.BUTTON_FORM, 'Edit', 'submit');
+    createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.title));
+    createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.description));
+    const dueDate = createInputForEdit(Task.INPUT, task.dueDate);
+    dueDate.onfocus = function () {
+      this.type = 'date';
+    };
+    createTaskFormContainer.appendChild(dueDate);
+    prioritySelect.value = task.priority
   }
   const cancelButtonElement = createButton(Task.BUTTON_FORM, 'Cancel', null);
   const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
   buttonContainer.appendChild(createButtonElement);
   buttonContainer.appendChild(cancelButtonElement);
 
-  createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
-  const dueDate = createInput(Task.INPUT, PLACE_HOLDER_DUE_DATE);
-  dueDate.onfocus = function () {
-    this.type = 'date';
-  };
-  dueDate.id = Task.DUE_DATE_ID;
-  createTaskFormContainer.appendChild(dueDate);
   createTaskFormContainer.appendChild(prioritySelect);
   createTaskFormContainer.appendChild(buttonContainer);
 
@@ -54,6 +62,7 @@ function createOptionList() {
   prioritySelect.appendChild(createOption('option', 1, 'Low'));
   prioritySelect.appendChild(createOption('option', 2, 'Normal'));
   prioritySelect.appendChild(createOption('option', 3, 'High'));
+  prioritySelect.value = 0;
   return prioritySelect;
 }
 
@@ -71,7 +80,7 @@ function cancelButtonAction(cancelButton,formName, formNameHide) {
   });
 }
 
-function createButtonAction(createButton) {
+function createButtonAction(createButton, taskForm) {
   createButton.addEventListener('click', () => {
     const userInput = document.getElementsByClassName(Task.INPUT);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
@@ -157,7 +166,7 @@ function viewTaskAction(viewDetailsButton) {
     const title = createElement('span', Task.INPUT, task.title);
     const description = createElement('span', Task.INPUT, task.description);
     const dueDate = createElement('span', Task.INPUT, task.dueDate);
-    const priority = createElement('span', Task.INPUT, task.priority);
+    const priority = createElement('span', Task.INPUT, showTaskPriorityValue(task.priority));
     const closeButton = createButton(Task.BUTTON_FORM, 'Close', 'button');
     const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
     buttonContainer.appendChild(closeButton);
@@ -177,6 +186,19 @@ function viewTaskAction(viewDetailsButton) {
 
 }
 
+function showTaskPriorityValue(priority){
+  switch (priority) {
+    case '1':
+      return 'Low';
+    case '2':
+      return 'Normal';
+    case '3':
+      return 'High';
+    default:
+      return 'No priority';
+  }
+}
+
 function closeButtonAction(closeButton,classNameModule){
   closeButton.addEventListener('click', () => {
     const viewTaskForm = document.getElementsByClassName(classNameModule)[0];
@@ -189,6 +211,7 @@ function closeButtonAction(closeButton,classNameModule){
 function disableAllButtons(flag){
   disableAllClassButtons(flag, Task.VIEW_INFO);
   disableAllClassButtons(flag, Task.EDIT_INFO);
+  document.getElementsByClassName(Task.CREATE_BUTTON)[0].disabled = flag;
 }
 
 function disableAllClassButtons(flag,className) {
