@@ -29,4 +29,16 @@ function transformDateFormat(date){
   return format(date, DATE_FORMAT);
 }
 
-export {processDate, isBeforeFromNow, getDateStringFromTimeStamp,transformDateFormat, DATE_FORMAT};
+function transformTsForInputDate(dateTimeStamp){
+  const date =  fromUnixTime(dateTimeStamp);
+  return format(date, 'yyyy-MM-dd');
+}
+
+function transformDateToInputView(dateTimeStamp){
+  const date =  fromUnixTime(dateTimeStamp);
+  return format(date, 'dd-MM-yyyy');
+}
+
+export {processDate, isBeforeFromNow, getDateStringFromTimeStamp,
+        transformDateFormat, transformTsForInputDate,
+        transformDateToInputView, DATE_FORMAT};

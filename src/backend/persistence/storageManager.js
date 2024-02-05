@@ -60,7 +60,6 @@ function createProjectFromFactory(element){
 }
 
 function createTaskFromFactory(element){
-  element.dueDate = getDateStringFromTimeStamp(element.dueDate);
   return createTask(element.title, element.description, element.dueDate, element.priority,element.id,element.projectId);
 }
 

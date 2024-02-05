@@ -2,7 +2,7 @@ import { createElement, createOption, createInput, createButton, createImage, cr
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
 import serviceCreateTask from '../../backend/service/taskService';
-import { transformDateFormat, getDateStringFromTimeStamp } from '../../backend/utils/date';
+import { transformDateFormat, transformTsForInputDate, transformDateToInputView } from '../../backend/utils/date';
 import deleteIcon from '../media/delete.png';
 import editIcon from '../media/edit.png';
 import seeDetailsIcon from '../media/seeDetails.png';
@@ -31,10 +31,8 @@ function createTaskForm(task, formName, formNameHide) {
     createButtonElement = createButton(Task.BUTTON_FORM, 'Edit', 'submit');
     createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.title));
     createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.description));
-    const dueDate = createInputForEdit(Task.INPUT, task.dueDate);
-    dueDate.onfocus = function () {
-      this.type = 'date';
-    };
+    const dueDate = createInputForEdit(Task.INPUT, transformTsForInputDate(task.dueDate));
+    dueDate.type = 'date';
     createTaskFormContainer.appendChild(dueDate);
     prioritySelect.value = task.priority
   }
@@ -165,7 +163,7 @@ function viewTaskAction(viewDetailsButton) {
     const task = selectedProject.getTask(taskId);
     const title = createElement('span', Task.INPUT, task.title);
     const description = createElement('span', Task.INPUT, task.description);
-    const dueDate = createElement('span', Task.INPUT, task.dueDate);
+    const dueDate = createElement('span', Task.INPUT, transformDateToInputView(task.dueDate));
     const priority = createElement('span', Task.INPUT, showTaskPriorityValue(task.priority));
     const closeButton = createButton(Task.BUTTON_FORM, 'Close', 'button');
     const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
