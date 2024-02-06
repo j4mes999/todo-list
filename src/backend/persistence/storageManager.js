@@ -1,6 +1,6 @@
 import createProject from "../project";
 import createTask from "../task";
-import { getDateStringFromTimeStamp } from "../utils/date";
+
 
 function saveProject(project){
     localStorage.setItem('p'+project.id, JSON.stringify(project));
@@ -37,6 +37,10 @@ function retrieveDataFromStorage(){
 
 function removeTask(taskID){
     localStorage.removeItem('t'+taskID);
+}
+
+function editTask(task){
+    localStorage.setItem('t'+task.id, JSON.stringify(task));
 }
 
 function loadProjectsAndTasks(projects, tasks){
@@ -82,4 +86,4 @@ function getElementFromStorage(key){
     return JSON.parse(localStorage.getItem(key));
 }
     
-export {saveProject, saveTask, clearStorage, retrieveDataFromStorage, removeTask};
+export {saveProject, saveTask, clearStorage, retrieveDataFromStorage, removeTask, editTask};

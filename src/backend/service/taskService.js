@@ -1,4 +1,4 @@
-import { saveTask } from "../persistence/storageManager";
+import { saveTask, editTask } from "../persistence/storageManager";
 import createTask from "../task";
 
 function serviceCreateTask(title, description, dueDate, priority, projectId){
@@ -8,6 +8,10 @@ function serviceCreateTask(title, description, dueDate, priority, projectId){
     return task;
 }
 
+function serviceEditTask(task){
+  editTask(task);
+}
 
 
-export default serviceCreateTask;
+
+export {serviceCreateTask, serviceEditTask};

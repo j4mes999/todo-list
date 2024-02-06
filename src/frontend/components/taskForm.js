@@ -1,53 +1,58 @@
 import { createElement, createOption, createInput, createButton, createImage, createInputForEdit } from './htmlElement';
 import { Task } from '../constants/uiConstants';
 import { selectedProject } from '../taskpane';
-import serviceCreateTask from '../../backend/service/taskService';
+import { serviceCreateTask, serviceEditTask } from '../../backend/service/taskService';
 import { transformDateFormat, transformTsForInputDate, transformDateToInputView } from '../../backend/utils/date';
 import deleteIcon from '../media/delete.png';
 import editIcon from '../media/edit.png';
 import seeDetailsIcon from '../media/seeDetails.png';
 import todoIcon from '../media/todoIconBlack.png';
 import { deleteTask } from '../../backend/service/projectService';
+import createTask from '../../backend/task';
 
 const PLACE_HOLDER_TITLE = 'Enter Title';
 const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
 const PLACE_HOLDER_DUE_DATE = 'Due Date';
 
 function createTaskForm(task, formName, formNameHide) {
-  const createTaskFormContainer = createElement(formName, formName);
+  const taskFormContainer = createElement(formName, formName);
   const prioritySelect = createOptionList();
   let createButtonElement;
+  let editButtonElement;
+  const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
   if(task === null){
     createButtonElement = createButton(Task.BUTTON_FORM, 'Create', 'submit');
-    createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE));
-    createTaskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
+    taskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_TITLE));
+    taskFormContainer.appendChild(createInput(Task.INPUT, PLACE_HOLDER_DESCRIPTION));
     const dueDate = createInput(Task.INPUT, PLACE_HOLDER_DUE_DATE);
     dueDate.onfocus = function () {
       this.type = 'date';
     };
     dueDate.id = Task.DUE_DATE_ID;
-    createTaskFormContainer.appendChild(dueDate);
+    taskFormContainer.appendChild(dueDate);
+    buttonContainer.appendChild(createButtonElement);
+    createButtonAction(createButtonElement, taskFormContainer);
   }else{
-    createButtonElement = createButton(Task.BUTTON_FORM, 'Edit', 'submit');
-    createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.title));
-    createTaskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.description));
+    editButtonElement = createButton(Task.BUTTON_FORM, 'Edit', 'submit');
+    taskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.title));
+    taskFormContainer.appendChild(createInputForEdit(Task.INPUT, task.description));
     const dueDate = createInputForEdit(Task.INPUT, transformTsForInputDate(task.dueDate));
     dueDate.type = 'date';
-    createTaskFormContainer.appendChild(dueDate);
+    taskFormContainer.appendChild(dueDate);
     prioritySelect.value = task.priority
+    buttonContainer.appendChild(editButtonElement);
+    editButtonAction(editButtonElement, taskFormContainer, task);
   }
   const cancelButtonElement = createButton(Task.BUTTON_FORM, 'Cancel', null);
-  const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
-  buttonContainer.appendChild(createButtonElement);
   buttonContainer.appendChild(cancelButtonElement);
 
-  createTaskFormContainer.appendChild(prioritySelect);
-  createTaskFormContainer.appendChild(buttonContainer);
+  taskFormContainer.appendChild(prioritySelect);
+  taskFormContainer.appendChild(buttonContainer);
 
   cancelButtonAction(cancelButtonElement,formName, formNameHide);
-  createButtonAction(createButtonElement, createTaskFormContainer);
+  
 
-  return createTaskFormContainer;
+  return taskFormContainer;
 
 }
 
@@ -93,6 +98,16 @@ function createButtonAction(createButton, taskForm) {
     const createTaskForm = document.getElementsByClassName(Task.FORM)[0];
     createTaskForm.classList.toggle(Task.FORM_HIDE);
     enableAddTaskButton();
+  });
+}
+
+function editButtonAction(editButton, taskForm, task){
+  editButton.addEventListener('click', () => {
+    console.log('taskForm.js Edit button was clicked');
+    console.log(`taskForm.js editButonAction task in it: ${task.id}`);
+    for (let element of taskForm.children){
+      console.log('taskFOrm.js editButtonAction element: '+ element.value);
+    }
   });
 }
 
