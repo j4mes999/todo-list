@@ -108,6 +108,13 @@ function editButtonAction(editButton, taskForm, task){
     for (let element of taskForm.children){
       console.log('taskFOrm.js editButtonAction element: '+ element.value);
     }
+    const dueDate = transformDateFormat(taskForm.children[2].value.replace(/-/g, '/'));
+    const taskToBeEdited = createTask(taskForm.children[0].value,taskForm.children[1].value,
+      dueDate, taskForm.children[3].value,task.id);
+    taskToBeEdited.projectId = task.projectId;
+    serviceEditTask(taskToBeEdited);
+    selectedProject.replaceTask(task, taskToBeEdited);
+    //TODO get the infoContainer and updaate the span with the new info
   });
 }
 

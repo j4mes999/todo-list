@@ -9,6 +9,8 @@ function serviceCreateTask(title, description, dueDate, priority, projectId){
 }
 
 function serviceEditTask(task){
+    //TODO verify if the task changed otherwise don't call editTask
+    // this method can return a boolean indicating if the task was updated or not.
   editTask(task);
 }
 

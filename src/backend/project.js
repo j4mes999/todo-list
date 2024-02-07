@@ -36,9 +36,14 @@ function createProject(name,description,projectId){
         return tasks;
     }
 
+    const replaceTask = (taskTobeReplaced, newTask) => {
+        const index = tasks.findIndex( t => t.id == taskTobeReplaced.id);
+        return tasks.splice(index,1,newTask);
+    }
+
     
 
-    return {addTask, getNumberOfTasks, removeTask, getTasks, getTask, name, description, id};
+    return {addTask, getNumberOfTasks, removeTask, getTasks, getTask, replaceTask, name, description, id};
 }
 
 export default createProject;
