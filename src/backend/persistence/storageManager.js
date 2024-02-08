@@ -85,5 +85,10 @@ function getTasksFromProject(project, tasks){
 function getElementFromStorage(key){
     return JSON.parse(localStorage.getItem(key));
 }
+
+function getTask(taskId){
+    const oldTask = getElementFromStorage('t'+taskId);
+    return createTaskFromFactory(oldTask);
+}
     
-export {saveProject, saveTask, clearStorage, retrieveDataFromStorage, removeTask, editTask};
+export {saveProject, saveTask, clearStorage, retrieveDataFromStorage, removeTask, editTask, getTask};

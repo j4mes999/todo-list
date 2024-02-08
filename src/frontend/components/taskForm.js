@@ -103,18 +103,17 @@ function createButtonAction(createButton, taskForm) {
 
 function editButtonAction(editButton, taskForm, task){
   editButton.addEventListener('click', () => {
-    console.log('taskForm.js Edit button was clicked');
-    console.log(`taskForm.js editButonAction task in it: ${task.id}`);
-    for (let element of taskForm.children){
-      console.log('taskFOrm.js editButtonAction element: '+ element.value);
-    }
     const dueDate = transformDateFormat(taskForm.children[2].value.replace(/-/g, '/'));
     const taskToBeEdited = createTask(taskForm.children[0].value,taskForm.children[1].value,
-      dueDate, taskForm.children[3].value,task.id);
+    dueDate, taskForm.children[3].value,task.id);
     taskToBeEdited.projectId = task.projectId;
     serviceEditTask(taskToBeEdited);
     selectedProject.replaceTask(task, taskToBeEdited);
-    //TODO get the infoContainer and updaate the span with the new info
+    const infoContainer = document.getElementById(task.id);
+    infoContainer.children[0].children[1].textContent = taskToBeEdited.title;
+    taskForm.remove();
+    disableAllButtons(false);
+    enableAddTaskButton();
   });
 }
 

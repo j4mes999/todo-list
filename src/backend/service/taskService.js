@@ -1,4 +1,4 @@
-import { saveTask, editTask } from "../persistence/storageManager";
+import { saveTask, editTask, getTask } from "../persistence/storageManager";
 import createTask from "../task";
 
 function serviceCreateTask(title, description, dueDate, priority, projectId){
@@ -11,6 +11,8 @@ function serviceCreateTask(title, description, dueDate, priority, projectId){
 function serviceEditTask(task){
     //TODO verify if the task changed otherwise don't call editTask
     // this method can return a boolean indicating if the task was updated or not.
+  const taskInStorage = getTask(task.id);
+  console.log('taskService.js task in storage: '+taskInStorage.title);
   editTask(task);
 }
 
