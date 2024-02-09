@@ -107,10 +107,12 @@ function editButtonAction(editButton, taskForm, task){
     const taskToBeEdited = createTask(taskForm.children[0].value,taskForm.children[1].value,
     dueDate, taskForm.children[3].value,task.id);
     taskToBeEdited.projectId = task.projectId;
-    serviceEditTask(taskToBeEdited);
-    selectedProject.replaceTask(task, taskToBeEdited);
-    const infoContainer = document.getElementById(task.id);
-    infoContainer.children[0].children[1].textContent = taskToBeEdited.title;
+    const edited = serviceEditTask(taskToBeEdited);
+    if(edited === true){
+      selectedProject.replaceTask(task, taskToBeEdited);
+      const infoContainer = document.getElementById(task.id);
+      infoContainer.children[0].children[1].textContent = taskToBeEdited.title;
+    }
     taskForm.remove();
     disableAllButtons(false);
     enableAddTaskButton();
@@ -171,8 +173,12 @@ function deleteTaskAction(deleteButton) {
     const viewTaskForm = document.getElementsByClassName(Task.VIEW_FORM);
     if (viewTaskForm.length > 0){
       viewTaskForm[0].remove();
-      disableAllButtons(false);
     }
+    const editTaskForm = document.getElementsByClassName(Task.EDIT_FORM);
+    if(editTaskForm.length > 0){
+      editTaskForm[0].remove();
+    }
+    disableAllButtons(false);
   });
 }
 
