@@ -88,7 +88,8 @@
   .taskFormButtonContainer,
   .infoContainer,
   .leftContainer,
-  .rightalContainer{
+  .rightalContainer,
+  .viewTagContainer{
     display: flex;
     flex-direction: row;
   }
@@ -108,7 +109,8 @@
   }
 
   .projectButtonContainer,
-  .taskFormButtonContainer{
+  .taskFormButtonContainer,
+  .inputTaskData{
     justify-content: center;
   }
 
@@ -151,7 +153,8 @@
     justify-content: center;
   }
 
-  .projectList{
+  .projectList,
+  .inputTaskData{
     display: flex;
     flex-direction: column;
   }
@@ -232,7 +235,13 @@
   .prioritySelect{
     background-color: #FFEE80;
     border: none;
-    height: 25px;;
+    height: 25px;
+    width: 100%;
+  }
+
+  .tagInfo{
+    width: 100px;
+    font-weight: bolder;
   }
 
 
@@ -261,7 +270,8 @@
     display: none;
   }
 
-  .leftContainer{
+  .leftContainer,
+  .viewTagContainer{
     align-items: center;
   }
 

@@ -9,6 +9,7 @@ import seeDetailsIcon from '../media/seeDetails.png';
 import todoIcon from '../media/todoIconBlack.png';
 import { deleteTask } from '../../backend/service/projectService';
 import createTask from '../../backend/task';
+import { create } from 'lodash';
 
 const PLACE_HOLDER_TITLE = 'Enter Title';
 const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
@@ -189,17 +190,37 @@ function viewTaskAction(viewDetailsButton) {
     const viewForm = createElement(Task.VIEW_FORM, Task.VIEW_FORM);
     const task = selectedProject.getTask(taskId);
     const title = createElement('span', Task.INPUT, task.title);
+    const titleTag = createElement('span', Task.VIEW_TAG_INFO, 'Title:');
     const description = createElement('span', Task.INPUT, task.description);
+    const descriptionTag = createElement('span',Task.VIEW_TAG_INFO, 'Description:');
     const dueDate = createElement('span', Task.INPUT, transformDateToInputView(task.dueDate));
+    const dueDateTag = createElement('span', Task.VIEW_TAG_INFO, 'Due Date:');
     const priority = createElement('span', Task.INPUT, showTaskPriorityValue(task.priority));
+    const priorityTag = createElement('span', Task.VIEW_TAG_INFO, 'Priority:');
     const closeButton = createButton(Task.BUTTON_FORM, 'Close', 'button');
     const buttonContainer = createElement(Task.BUTTON_CONTAINER, Task.BUTTON_CONTAINER);
     buttonContainer.appendChild(closeButton);
 
-    viewForm.appendChild(title);
-    viewForm.appendChild(description);
-    viewForm.appendChild(dueDate);
-    viewForm.appendChild(priority);
+    let viewTagContainer = createElement('div', Task.VIEW_TAG);
+    viewTagContainer.appendChild(titleTag);
+    viewTagContainer.appendChild(title);
+    viewForm.appendChild(viewTagContainer);
+    
+    viewTagContainer = createElement('div', Task.VIEW_TAG);
+    viewTagContainer.appendChild(descriptionTag);
+    viewTagContainer.appendChild(description);
+    viewForm.appendChild(viewTagContainer);
+    
+    viewTagContainer = createElement('div', Task.VIEW_TAG);
+    viewTagContainer.appendChild(dueDateTag);
+    viewTagContainer.appendChild(dueDate);
+    viewForm.appendChild(viewTagContainer);
+
+    viewTagContainer = createElement('div', Task.VIEW_TAG);
+    viewTagContainer.appendChild(priorityTag);
+    viewTagContainer.appendChild(priority);
+    viewForm.appendChild(viewTagContainer);
+
     viewForm.appendChild(buttonContainer);
 
     const uiContainer = getParentElement(taskId);
