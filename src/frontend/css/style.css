@@ -15,7 +15,6 @@
     flex-direction: row;
     padding: 1rem;
     background-color: var(--background-body);
-    /*border-bottom: 1px solid var(--border-color);*/
     font-family: sans-serif;
     font-style: italic;
   }
@@ -238,7 +237,7 @@
   .prioritySelect{
     background-color: #FFEE80;
     border: none;
-    height: 35px;
+    height: 25px;
     width: 100%;
   }
 
