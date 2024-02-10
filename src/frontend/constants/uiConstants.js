@@ -24,7 +24,8 @@ export const Task ={
     EDIT_FORM: 'editTaskForm',
     EDIT_FORM_HIDE: 'editTaskFormHide',
     VIEW_TAG: 'viewTagContainer',
-    VIEW_TAG_INFO: 'tagInfo'
+    VIEW_TAG_INFO: 'tagInfo',
+    TOOL_TIP_TEXT: 'toolTipText'
 }
 
 export const Project = {

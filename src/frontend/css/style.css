@@ -142,9 +142,7 @@
   }
 
   .createProjectButton,
-  .deleteInfoTask,
-  .viewInfoTask,
-  .editInfoTask{
+  .deleteInfoTask{
     background: transparent;
     cursor: pointer;
     border: solid 2px transparent;
@@ -153,10 +151,15 @@
     justify-content: center;
   }
 
-  .projectList,
-  .inputTaskData{
+  .projectList{
     display: flex;
     flex-direction: column;
+  }
+
+  .inputTaskData{
+    display: flex;
+    justify-content: left;
+    align-items: center;
   }
 
   .createTaskButton{
@@ -235,7 +238,7 @@
   .prioritySelect{
     background-color: #FFEE80;
     border: none;
-    height: 25px;
+    height: 35px;
     width: 100%;
   }
 
@@ -285,7 +288,7 @@
   .infoContainer{
     justify-content: space-evenly;
     background-color: #FFEE80;
-    margin: 10px 20px;
+    margin: 10px 40px;
   }
 
   /* Hovering selectors*/
@@ -358,6 +361,66 @@
   }
 
   /* end Effect when hovering an accept or cancel button */
+
+  /* Tool tip effects: */
+  .viewInfoTask,
+  .editInfoTask,
+  .deleteInfoTask{
+    position: relative;
+    display: flex;
+    background: transparent;
+    cursor: pointer;
+    border: solid 2px transparent;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+.viewInfoTask .toolTipText,
+.editInfoTask .toolTipText,
+.deleteInfoTask .toolTipText{
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--background-body);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+  /* Tool Tip arrow: */
+.viewInfoTask .toolTipText::after,
+.editInfoTask .toolTipText::after,
+.deleteInfoTask .toolTipText::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--background-body) transparent transparent transparent;
+}
+
+.viewInfoTask:hover .toolTipText,
+.editInfoTask:hover .toolTipText,
+.deleteInfoTask:hover .toolTipText {
+  visibility: visible;
+  opacity: 1;
+}
+
+  /* end Tool tip effects: */
 
   /* Responsive design*/
   @media (max-width: 800px) {

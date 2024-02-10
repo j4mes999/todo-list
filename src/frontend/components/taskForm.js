@@ -9,7 +9,6 @@ import seeDetailsIcon from '../media/seeDetails.png';
 import todoIcon from '../media/todoIconBlack.png';
 import { deleteTask } from '../../backend/service/projectService';
 import createTask from '../../backend/task';
-import { create } from 'lodash';
 
 const PLACE_HOLDER_TITLE = 'Enter Title';
 const PLACE_HOLDER_DESCRIPTION = 'Enter Description';
@@ -137,6 +136,16 @@ function drawTask(task) {
   editDetailsButton.appendChild(createImage(Task.INFO_ICON, editIcon));
   deleteButton.appendChild(createImage(Task.INFO_ICON, deleteIcon))
   viewDetailsButton.appendChild(createImage(Task.INFO_ICON, seeDetailsIcon));
+
+  const viewToolTipText = createElement(Task.TOOL_TIP_TEXT,Task.TOOL_TIP_TEXT, 'View Task');
+  viewDetailsButton.appendChild(viewToolTipText);
+
+  const editToolTipText = createElement(Task.TOOL_TIP_TEXT,Task.TOOL_TIP_TEXT, 'Edit Task');
+  editDetailsButton.appendChild(editToolTipText);
+
+  const deleteToolTipText = createElement(Task.TOOL_TIP_TEXT,Task.TOOL_TIP_TEXT, 'Delete Task');
+  deleteButton.appendChild(deleteToolTipText)
+
   rightContainer.appendChild(viewDetailsButton);
   rightContainer.appendChild(editDetailsButton);
   rightContainer.appendChild(deleteButton);
