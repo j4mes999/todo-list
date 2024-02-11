@@ -17,8 +17,7 @@ function createTask( title, description, dueDate, priority, taskId, project){
         if(date.length == 0){
             return '';
         }else if(isBeforeFromNow(date)){
-            console.warn('Due date cannot be before today\'s  date');
-            return ''
+            throw new Error('Due date cannot be before today\'s  date');
         }
 
         return processDate(date);

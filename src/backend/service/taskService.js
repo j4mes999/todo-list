@@ -3,10 +3,16 @@ import createTask from "../task";
 import _ from 'lodash';
 
 function serviceCreateTask(title, description, dueDate, priority, projectId){
-    const task = createTask(title, description, dueDate, priority);
+  let task = null;
+  try{
+    task = createTask(title, description, dueDate, priority);
     saveTask(task, projectId);
+  }
+  catch(err){
+    throw new Error(err.message);
+  }
 
-    return task;
+  return task;
 }
 
 function serviceEditTask(task){

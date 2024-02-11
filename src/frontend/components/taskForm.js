@@ -88,8 +88,24 @@ function createButtonAction(createButton, taskForm) {
     const userInput = document.getElementsByClassName(Task.INPUT);
     const dueDate = document.getElementById(Task.DUE_DATE_ID).value;
     const priority = document.getElementsByClassName(Task.PRIORITY_SELECT)[0];
-    const formattedDate = transformDateFormat(dueDate.replace(/-/g, '/'));
-    const task = serviceCreateTask(userInput[0].value, userInput[1].value, formattedDate, priority.value, selectedProject.id);
+    let formattedDate = null;
+    try{
+      formattedDate = transformDateFormat(dueDate.replace(/-/g, '/'));
+    }catch(err){
+      console.error('Error formating the date: '+err.message);
+      alert('Due Date format is not valid, please enter a valid format');
+      return;
+    }
+    
+    let task = null;
+    try{
+      task = serviceCreateTask(userInput[0].value, userInput[1].value, formattedDate, 
+        priority.value, selectedProject.id);
+    }catch(err){
+      alert('Error creating the task: '+err.message);
+      return;
+    }
+    
     selectedProject.addTask(task);
 
     const taskPane = document.getElementsByClassName(Task.PANE)[0];
@@ -103,9 +119,23 @@ function createButtonAction(createButton, taskForm) {
 
 function editButtonAction(editButton, taskForm, task){
   editButton.addEventListener('click', () => {
-    const dueDate = transformDateFormat(taskForm.children[2].value.replace(/-/g, '/'));
-    const taskToBeEdited = createTask(taskForm.children[0].value,taskForm.children[1].value,
-    dueDate, taskForm.children[3].value,task.id);
+    let dueDate = null;
+    try{
+      dueDate = transformDateFormat(taskForm.children[2].value.replace(/-/g, '/'));
+    }catch(err){
+      alert('Due Date format is not valid, please enter a valid format');
+      return;
+    }
+    
+    let taskToBeEdited = null;
+    try{
+      taskToBeEdited = createTask(taskForm.children[0].value,taskForm.children[1].value,
+        dueDate, taskForm.children[3].value,task.id);
+    }catch(err){
+      alert('Error editing the task:'+ err.message);
+      return;
+    }
+     
     taskToBeEdited.projectId = task.projectId;
     const edited = serviceEditTask(taskToBeEdited);
     if(edited === true){
