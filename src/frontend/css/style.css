@@ -4,6 +4,8 @@
     --border-color:  #10b143;
     --main-font-color: rgb(255, 255, 255);
     --main-black-color-font: #101010;
+    --main-font-family-bold: 'poppins-bold';
+    --main-font-family-regular: 'poppins-regular';
     
   }
 
@@ -28,6 +30,7 @@
 
   .title{
     font-size: 40px;
+    font-family: var(--main-font-family-bold);
     color: var(--main-font-color);
     margin-top: 0px;
     margin-bottom: 0px;
@@ -36,12 +39,14 @@
   .subTitle,
   .projectInfo{
     font-size: 30px;
+    font-family: var(--main-font-family-bold);
     margin: 10px;
   }
 
   .subTitleProject{
     color: var(--main-font-color);
     margin: 10px;
+    font-family: var(--main-font-family-bold);
   }
 
   .subTitleTask{
@@ -53,6 +58,7 @@
     color: var(--main-font-color);
     margin-top: 0px;
     margin-bottom: 0px;
+    font-family: var(--main-font-family-regular);
   }
 
   .headerIcon{
@@ -101,10 +107,12 @@
   .addTaskLabel{
     color: var(--main-black-color-font);
     font-size: 20px;
+    font-family: var(--main-font-family-regular);
   }
 
   .createProjectLabel{
     color: var(--main-font-color);
+    font-family: var(--main-font-family-regular);
   }
 
   .projectButtonContainer,
@@ -128,6 +136,7 @@
     flex: 70%;
     height: auto;
     background-color: var(--background-task-pane);
+    font-family: var(--main-font-family-regular);
   }
 
   .createProjectIcon{
@@ -211,6 +220,7 @@
   .projectName{
     color: var(--main-font-color);
     margin: 5px;
+    font-family: var(--main-font-family-regular);
   }
 
   .projectItem{
@@ -231,6 +241,7 @@
     padding: 10px;
     margin: 20px;
     gap: 1em;
+    font-family: var(--main-font-family-regular);
   }
 
   .inputTaskData,
@@ -242,7 +253,7 @@
   }
 
   .tagInfo{
-    width: 100px;
+    flex-basis: 110px;
     font-weight: bolder;
   }
 
@@ -275,6 +286,10 @@
   .leftContainer,
   .viewTagContainer{
     align-items: center;
+  }
+
+  .viewTagContainer{
+    gap: 15px;
   }
 
   .rightContainer{
@@ -428,3 +443,13 @@
     }
     
   }
+
+@font-face {
+  font-family: 'poppins-bold';
+  src: url('../fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'poppins-regular';
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+}
