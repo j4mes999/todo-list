@@ -1,7 +1,7 @@
 import createProjectIcon from './media/plusSignYellow.png';
 import folderIconImg from './media/folderIconWhite.png';
 import {serviceCreateProject} from '../backend/service/projectService';
-import { addProjectToList } from './components/projectList';
+import { addProjectToList, projects } from './components/projectList';
 import { createButton, createElement, createImage, createInput } from './components/htmlElement';
 import { Project } from './constants/uiConstants'; 
 
@@ -66,8 +66,12 @@ function createButtonEvent(createButton){
 
 function createProjectAction() {
     const projectName = document.getElementsByClassName(Project.INPUT_NAME);
+    if( projects.some( p => p.name.toLowerCase() === projectName[0].value.toLowerCase())){
+        alert('Cannot create projects with the same name');
+        return;
+    }
     const project = serviceCreateProject(projectName[0].value);
-    addProjectToList(project);
+    addProjectToList(project);    
     dissapearProjectForm();
     enableCreateProjectButton();
 }
